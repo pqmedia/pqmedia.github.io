@@ -1,0 +1,477 @@
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-content">
+      <p class="label">WELD PQ / USA</p>
+
+      <h1>
+        BUILD.<br />
+        WELD.<br />
+        CREATE.
+      </h1>
+
+      <p class="intro">
+        Practical welding, fabrication and shop tool ideas —
+        built, tested and shared from the workshop.
+      </p>
+
+      <div class="actions">
+        <a href="/projects" class="primary-button">
+          Explore Projects
+          <span>→</span>
+        </a>
+
+        <a
+          href="https://www.youtube.com/@WELDPQ"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-link"
+        >
+          Watch on YouTube
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="hero-visual">
+
+      <div class="hero-slider">
+
+        <!-- IMAGE 01 -->
+        <div class="slide slide-1">
+          <img
+            src="/images/hero/hero-1.jpg"
+            alt="WELD PQ team"
+          />
+        </div>
+
+        <!-- IMAGE 02 -->
+        <div class="slide slide-2">
+          <img
+            src="/images/hero/hero-2.jpg"
+            alt="WELD PQ workshop"
+          />
+        </div>
+
+        <!-- IMAGE 03 -->
+        <div class="slide slide-3">
+          <img
+            src="/images/hero/hero-3.jpg"
+            alt="WELD PQ fabrication project"
+          />
+        </div>
+
+
+        <!-- DARK GRADIENT -->
+        <div class="image-overlay"></div>
+
+
+        <!-- BRAND -->
+        <div class="image-brand">
+          WELD PQ
+        </div>
+
+
+        <!-- BOTTOM INFO -->
+        <div class="technical-info">
+          <span>WORKSHOP / USA</span>
+          <span>WELDING • FABRICATION</span>
+        </div>
+
+
+        <!-- SLIDE INDICATOR -->
+        <div class="slider-indicator">
+          <span>01</span>
+          <span class="indicator-line"></span>
+          <span>03</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+
+  /* ================================
+     HERO
+  ================================= */
+
+  .hero {
+    min-height: calc(100vh - 84px);
+
+    display: flex;
+    align-items: center;
+
+    padding: 70px 0 90px;
+  }
+
+
+  .hero-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 5fr)
+      minmax(0, 7fr);
+
+    gap: clamp(50px, 7vw, 110px);
+
+    align-items: center;
+  }
+
+
+  /* ================================
+     LEFT CONTENT
+  ================================= */
+
+  h1 {
+    margin: 0 0 35px;
+
+    font-size: clamp(70px, 7.2vw, 112px);
+
+    font-weight: 700;
+
+    line-height: 0.92;
+
+    letter-spacing: -0.055em;
+  }
+
+
+  .intro {
+    max-width: 520px;
+
+    margin: 0 0 42px;
+
+    font-size: clamp(17px, 1.3vw, 20px);
+
+    line-height: 1.7;
+  }
+
+
+  .actions {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 30px;
+  }
+
+
+  /* ================================
+     HERO IMAGE
+  ================================= */
+
+  .hero-visual {
+    width: 100%;
+  }
+
+
+  .hero-slider {
+    position: relative;
+
+    width: 100%;
+
+    height: min(72vh, 760px);
+    min-height: 560px;
+
+    overflow: hidden;
+
+    background: var(--graphite);
+  }
+
+
+  /* ================================
+     ALL SLIDES
+  ================================= */
+
+  .slide {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    animation-name: heroFade;
+    animation-duration: 15s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
+
+  .slide-1 {
+    animation-delay: 0s;
+  }
+
+
+  .slide-2 {
+    animation-delay: 5s;
+  }
+
+
+  .slide-3 {
+    animation-delay: 10s;
+  }
+
+
+  .slide img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+  }
+
+
+  /* ================================
+     SLIDESHOW ANIMATION
+  ================================= */
+
+  @keyframes heroFade {
+
+    0% {
+      opacity: 0;
+      transform: scale(1.03);
+    }
+
+    4% {
+      opacity: 1;
+    }
+
+    28% {
+      opacity: 1;
+    }
+
+    33% {
+      opacity: 0;
+      transform: scale(1);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+
+  }
+
+
+  /* ================================
+     IMAGE OVERLAY
+  ================================= */
+
+  .image-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.02) 35%,
+        rgba(0, 0, 0, 0.52) 100%
+      );
+  }
+
+
+  /* ================================
+     WELD PQ LABEL
+  ================================= */
+
+  .image-brand {
+    position: absolute;
+
+    top: 26px;
+    right: 26px;
+
+    z-index: 10;
+
+    color: #ffffff;
+
+    font-family: var(--font-heading);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+  }
+
+
+  /* ================================
+     TECHNICAL INFO
+  ================================= */
+
+  .technical-info {
+    position: absolute;
+
+    left: 28px;
+    right: 28px;
+
+    bottom: 24px;
+
+    z-index: 10;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 18px;
+
+    border-top:
+      1px solid rgba(255, 255, 255, 0.55);
+
+    color: #ffffff;
+  }
+
+
+  .technical-info span {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+  }
+
+
+  /* ================================
+     SMALL SLIDE INDICATOR
+  ================================= */
+
+  .slider-indicator {
+    position: absolute;
+
+    left: 28px;
+    bottom: 66px;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #ffffff;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+  }
+
+
+  .indicator-line {
+    display: block;
+
+    width: 50px;
+    height: 1px;
+
+    background:
+      rgba(255, 255, 255, 0.7);
+  }
+
+
+  /* ================================
+     TABLET
+  ================================= */
+
+  @media (max-width: 900px) {
+
+    .hero {
+      min-height: auto;
+
+      padding: 80px 0 50px;
+    }
+
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+
+      gap: 65px;
+    }
+
+
+    h1 {
+      font-size: clamp(60px, 16vw, 88px);
+    }
+
+
+    .hero-slider {
+      height: 600px;
+
+      min-height: 0;
+    }
+
+  }
+
+
+  /* ================================
+     MOBILE
+  ================================= */
+
+  @media (max-width: 520px) {
+
+    .actions {
+      align-items: flex-start;
+
+      flex-direction: column;
+    }
+
+
+    .hero-slider {
+      height: 470px;
+
+      min-height: 0;
+    }
+
+
+    .technical-info {
+      left: 18px;
+      right: 18px;
+
+      bottom: 18px;
+    }
+
+
+    .technical-info span {
+      font-size: 8px;
+    }
+
+
+    .slider-indicator {
+      left: 18px;
+
+      bottom: 58px;
+    }
+
+
+    .image-brand {
+      top: 18px;
+      right: 18px;
+    }
+
+  }
+
+</style>

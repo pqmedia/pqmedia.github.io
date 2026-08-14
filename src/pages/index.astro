@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import FeaturedBuild from "../components/FeaturedBuild.astro";
+import ShopTools from "../components/ShopTools.astro";
+import WorkshopNotes from "../components/WorkshopNotes.astro";
+import OurStory from "../components/OurStory.astro";
+import WatchWeldPQ from "../components/WatchWeldPQ.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="WELD PQ — Build. Weld. Create."
+  description="Practical welding, fabrication and workshop tool ideas from WELD PQ."
+>
+  <Header />
+
+  <main>
+    <Hero />
+
+    <FeaturedBuild />
+
+    <ShopTools />
+
+    <WorkshopNotes />
+
+    <OurStory />
+
+    <WatchWeldPQ />
+  </main>
+
+  <Footer />
+</BaseLayout>

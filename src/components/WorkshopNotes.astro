@@ -1,0 +1,914 @@
+---
+import { getCollection } from "astro:content";
+
+/*
+  Lấy tất cả bài blog đã xuất bản
+*/
+const posts = await getCollection(
+  "blog",
+  ({ data }) => data.draft !== true
+);
+
+/*
+  Sắp xếp mới nhất trước
+*/
+posts.sort(
+  (a, b) =>
+    b.data.pubDate.valueOf() -
+    a.data.pubDate.valueOf()
+);
+
+/*
+  Nếu có bài featured: true
+  -> dùng bài đó làm bài nổi bật.
+
+  Nếu không có
+  -> dùng bài mới nhất.
+*/
+const featuredPost =
+  posts.find((post) => post.data.featured === true)
+  ?? posts[0];
+
+/*
+  Lấy thêm 2 bài,
+  nhưng không lấy lại bài featured.
+*/
+const otherPosts = featuredPost
+  ? posts
+      .filter((post) => post.id !== featuredPost.id)
+      .slice(0, 2)
+  : [];
+---
+
+<section class="workshop-notes section">
+
+  <div class="container">
+
+    <!-- =========================
+         SECTION HEADER
+    ========================== -->
+
+    <div class="notes-header">
+
+      <div>
+
+        <p class="label">
+          03 — Workshop Notes
+        </p>
+
+        <h2>
+          FROM THE<br />
+          WORKSHOP.
+        </h2>
+
+      </div>
+
+
+      <div class="header-right">
+
+        <p>
+          Practical techniques, lessons and ideas
+          learned through real welding, fabrication
+          and workshop projects.
+        </p>
+
+        <a
+          href="/blog/"
+          class="text-link"
+        >
+          Explore Blog
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         BLOG POSTS
+    ========================== -->
+
+    {
+      featuredPost ? (
+
+        <>
+
+          <!-- FEATURED ARTICLE -->
+
+          <article class="featured-note">
+
+            <a
+              href={`/blog/${featuredPost.id}/`}
+              class="featured-image"
+            >
+
+              <img
+                src={featuredPost.data.image}
+                alt={featuredPost.data.imageAlt}
+              />
+
+              <div class="image-overlay"></div>
+
+              <span class="article-number">
+                FEATURED / 01
+              </span>
+
+            </a>
+
+
+            <div class="featured-content">
+
+              <div>
+
+                <p class="article-category">
+                  {featuredPost.data.category}
+                </p>
+
+
+                <h3>
+
+                  <a
+                    href={`/blog/${featuredPost.id}/`}
+                  >
+                    {featuredPost.data.title}
+                  </a>
+
+                </h3>
+
+
+                <p class="article-description">
+                  {featuredPost.data.description}
+                </p>
+
+              </div>
+
+
+              <div class="article-meta">
+
+                <div>
+
+                  <span>
+                    TOPIC
+                  </span>
+
+                  <strong>
+                    {featuredPost.data.category}
+                  </strong>
+
+                </div>
+
+
+                <div>
+
+                  <span>
+                    READ TIME
+                  </span>
+
+                  <strong>
+                    {
+                      featuredPost.data.readTime
+                        ?? "Workshop Note"
+                    }
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <a
+                href={`/blog/${featuredPost.id}/`}
+                class="text-link"
+              >
+                Read Workshop Note
+                <span>→</span>
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- OTHER ARTICLES -->
+
+          {
+            otherPosts.length > 0 && (
+
+              <div class="notes-list">
+
+                {
+                  otherPosts.map(
+                    (post, index) => (
+
+                      <article class="note-row">
+
+                        <div class="note-index">
+
+                          {
+                            String(index + 2)
+                              .padStart(2, "0")
+                          }
+
+                        </div>
+
+
+                        <div class="note-content">
+
+                          <p class="article-category">
+                            {post.data.category}
+                          </p>
+
+
+                          <h3>
+
+                            <a
+                              href={`/blog/${post.id}/`}
+                            >
+                              {post.data.title}
+                            </a>
+
+                          </h3>
+
+
+                          <p>
+                            {post.data.description}
+                          </p>
+
+
+                          <div class="note-footer">
+
+                            <span>
+
+                              {
+                                post.data.readTime
+                                  ?? "WORKSHOP NOTE"
+                              }
+
+                            </span>
+
+
+                            <a
+                              href={`/blog/${post.id}/`}
+                            >
+                              Read Article →
+                            </a>
+
+                          </div>
+
+                        </div>
+
+
+                        <a
+                          href={`/blog/${post.id}/`}
+                          class="note-image"
+                        >
+
+                          <img
+                            src={post.data.image}
+                            alt={post.data.imageAlt}
+                            loading="lazy"
+                          />
+
+                        </a>
+
+                      </article>
+
+                    )
+                  )
+                }
+
+              </div>
+
+            )
+          }
+
+        </>
+
+      ) : (
+
+
+        <div class="empty-blog">
+
+          <p>
+            Workshop notes are coming soon.
+          </p>
+
+        </div>
+
+      )
+    }
+
+
+    <!-- =========================
+         BOTTOM LINK
+    ========================== -->
+
+    <div class="notes-bottom">
+
+      <a
+        href="/blog/"
+        class="all-notes-link"
+      >
+
+        <span>
+          Explore All Workshop Notes
+        </span>
+
+        <span class="arrow">
+          →
+        </span>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<style>
+
+  /* =================================
+     SECTION
+  ================================== */
+
+  .workshop-notes {
+    background: var(--bg);
+
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  /* =================================
+     HEADER
+  ================================== */
+
+  .notes-header {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 2fr)
+      minmax(280px, 1fr);
+
+    gap: 80px;
+
+    align-items: end;
+
+    margin-bottom: 90px;
+  }
+
+
+  .notes-header h2 {
+    margin: 0;
+
+    font-size:
+      clamp(54px, 6vw, 92px);
+
+    font-weight: 600;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.045em;
+  }
+
+
+  .header-right {
+    max-width: 430px;
+  }
+
+
+  .header-right > p {
+    margin: 0 0 28px;
+
+    font-size: 18px;
+
+    line-height: 1.75;
+  }
+
+
+  /* =================================
+     FEATURED ARTICLE
+  ================================== */
+
+  .featured-note {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 7fr)
+      minmax(350px, 5fr);
+
+    gap:
+      clamp(45px, 6vw, 90px);
+
+    margin-bottom: 110px;
+  }
+
+
+  /* FEATURED IMAGE */
+
+  .featured-image {
+    position: relative;
+
+    display: block;
+
+    min-height: 610px;
+
+    overflow: hidden;
+
+    background: var(--graphite);
+  }
+
+
+  .featured-image img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+      transform 0.8s ease;
+  }
+
+
+  .featured-image:hover img {
+    transform: scale(1.025);
+  }
+
+
+  .image-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.02) 45%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
+  }
+
+
+  .article-number {
+    position: absolute;
+
+    left: 24px;
+    bottom: 22px;
+
+    color: white;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+  }
+
+
+  /* FEATURED CONTENT */
+
+  .featured-content {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    gap: 45px;
+
+    padding: 6px 0;
+  }
+
+
+  .article-category {
+    margin: 0 0 25px;
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+  }
+
+
+  .featured-content h3 {
+    margin: 0 0 32px;
+
+    font-size:
+      clamp(44px, 4.6vw, 70px);
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+  }
+
+
+  .featured-content h3 a {
+    transition: color 0.2s ease;
+  }
+
+
+  .featured-content h3 a:hover {
+    color: var(--accent);
+  }
+
+
+  .article-description {
+    max-width: 450px;
+
+    margin: 0;
+
+    font-size: 17px;
+
+    line-height: 1.75;
+  }
+
+
+  /* =================================
+     ARTICLE META
+  ================================== */
+
+  .article-meta {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    border-top:
+      1px solid var(--border);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .article-meta > div {
+    padding: 20px 0;
+  }
+
+
+  .article-meta > div + div {
+    padding-left: 24px;
+
+    border-left:
+      1px solid var(--border);
+  }
+
+
+  .article-meta span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color:
+      var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  .article-meta strong {
+    font-size: 14px;
+
+    font-weight: 600;
+  }
+
+
+  /* =================================
+     OTHER POSTS
+  ================================== */
+
+  .notes-list {
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  .note-row {
+    display: grid;
+
+    grid-template-columns:
+      60px
+      minmax(0, 7fr)
+      minmax(260px, 4fr);
+
+    gap:
+      clamp(30px, 5vw, 70px);
+
+    align-items: center;
+
+    padding: 65px 0;
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .note-index {
+    align-self: start;
+
+    padding-top: 5px;
+
+    color:
+      var(--text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+  }
+
+
+  .note-content {
+    max-width: 620px;
+  }
+
+
+  .note-content h3 {
+    max-width: 620px;
+
+    margin: 0 0 25px;
+
+    font-size:
+      clamp(32px, 3.3vw, 50px);
+
+    font-weight: 600;
+
+    line-height: 1.07;
+
+    letter-spacing: -0.04em;
+  }
+
+
+  .note-content h3 a {
+    transition:
+      color 0.2s ease;
+  }
+
+
+  .note-content h3 a:hover {
+    color: var(--accent);
+  }
+
+
+  .note-content > p:not(.article-category) {
+    max-width: 520px;
+
+    margin: 0 0 30px;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+  }
+
+
+  .note-footer {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 30px;
+
+    align-items: center;
+  }
+
+
+  .note-footer span,
+  .note-footer a {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+  }
+
+
+  .note-footer span {
+    color:
+      var(--text-secondary);
+  }
+
+
+  /* ARTICLE IMAGE */
+
+  .note-image {
+    display: block;
+
+    height: 280px;
+
+    overflow: hidden;
+
+    background:
+      var(--graphite);
+  }
+
+
+  .note-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+      transform 0.7s ease;
+  }
+
+
+  .note-image:hover img {
+    transform: scale(1.03);
+  }
+
+
+  /* =================================
+     EMPTY
+  ================================== */
+
+  .empty-blog {
+    padding: 80px 0;
+
+    border-top:
+      1px solid var(--border);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  /* =================================
+     BOTTOM LINK
+  ================================== */
+
+  .notes-bottom {
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 55px;
+  }
+
+
+  .all-notes-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 70px;
+
+    padding-bottom: 12px;
+
+    border-bottom:
+      1px solid var(--text);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+  }
+
+
+  .arrow {
+    transition:
+      transform 0.2s ease;
+  }
+
+
+  .all-notes-link:hover .arrow {
+    transform:
+      translateX(6px);
+  }
+
+
+  /* =================================
+     TABLET
+  ================================== */
+
+  @media (max-width: 900px) {
+
+    .notes-header {
+      grid-template-columns: 1fr;
+
+      gap: 30px;
+
+      margin-bottom: 60px;
+    }
+
+
+    .featured-note {
+      grid-template-columns: 1fr;
+
+      margin-bottom: 80px;
+    }
+
+
+    .featured-image {
+      min-height: 520px;
+    }
+
+
+    .note-row {
+      grid-template-columns:
+        45px 1fr;
+    }
+
+
+    .note-content {
+      grid-column: 2;
+    }
+
+
+    .note-image {
+      grid-column: 2;
+
+      height: 400px;
+    }
+
+  }
+
+
+  /* =================================
+     MOBILE
+  ================================== */
+
+  @media (max-width: 600px) {
+
+    .featured-image {
+      min-height: 430px;
+    }
+
+
+    .note-row {
+      grid-template-columns: 1fr;
+
+      gap: 24px;
+
+      padding: 50px 0;
+    }
+
+
+    .note-index,
+    .note-content,
+    .note-image {
+      grid-column: 1;
+    }
+
+
+    .note-image {
+      height: 320px;
+    }
+
+
+    .article-meta {
+      grid-template-columns: 1fr;
+    }
+
+
+    .article-meta > div + div {
+      padding-left: 0;
+
+      border-left: 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .notes-bottom {
+      justify-content: stretch;
+    }
+
+
+    .all-notes-link {
+      width: 100%;
+
+      justify-content:
+        space-between;
+    }
+
+  }
+
+</style>

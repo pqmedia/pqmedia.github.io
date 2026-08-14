@@ -1,0 +1,1156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const storySections = [
+  {
+    number: "01",
+    title: "WHERE IT STARTED",
+    text:
+      "WELD PQ began with a simple interest in making things, solving workshop problems and finding better ways to work with metal.",
+  },
+
+  {
+    number: "02",
+    title: "BUILDING THINGS",
+    text:
+      "Our projects come from real workshop needs — tools, fixtures, fabrication ideas and practical solutions that can actually be used.",
+  },
+
+  {
+    number: "03",
+    title: "WHY WELD PQ",
+    text:
+      "We created WELD PQ to share the ideas, techniques, mistakes and lessons behind the things we build.",
+  },
+
+  {
+    number: "04",
+    title: "PQ MEDIA",
+    text:
+      "WELD PQ is operated by PQ Media in the United States. The company develops practical media content focused on making, fabrication and workshop knowledge.",
+  },
+
+  {
+    number: "05",
+    title: "WHERE WE ARE TODAY",
+    text:
+      "We continue to build, test and share practical ideas with makers, welders, fabricators and metalworkers around the world.",
+  },
+];
+---
+
+<BaseLayout
+  title="Our Story — WELD PQ"
+  description="The story behind WELD PQ, our workshop, our projects and the team behind the builds."
+>
+  <Header />
+
+  <main>
+
+    <!-- ============================
+         HERO
+    ============================= -->
+
+    <section class="story-hero">
+
+      <div class="container">
+
+        <p class="label">
+          WELD PQ / OUR STORY
+        </p>
+
+        <h1>
+          BUILT IN<br />
+          THE WORKSHOP.<br />
+          SHARED WITH<br />
+          THE WORLD.
+        </h1>
+
+        <div class="hero-bottom">
+
+          <p>
+            WELD PQ is about building useful things,
+            solving real workshop problems and sharing
+            what we learn along the way.
+          </p>
+
+          <span>
+            PQ MEDIA / UNITED STATES
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================
+         MAIN IMAGE
+    ============================= -->
+
+    <section class="story-image-section">
+
+      <div class="container">
+
+        <div class="story-image">
+
+          <img
+            src="/images/story/story-home.jpg"
+            alt="The team behind WELD PQ"
+          />
+
+          <div class="image-overlay"></div>
+
+          <div class="image-info">
+
+            <span>
+              WELD PQ
+            </span>
+
+            <span>
+              THE PEOPLE BEHIND THE BUILDS
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================
+         INTRODUCTION
+    ============================= -->
+
+    <section class="story-intro section">
+
+      <div class="container intro-grid">
+
+        <div>
+
+          <p class="label">
+            The Idea
+          </p>
+
+          <h2>
+            WE BUILD.<br />
+            WE LEARN.<br />
+            WE SHARE.
+          </h2>
+
+        </div>
+
+
+        <div class="intro-copy">
+
+          <p class="large-copy">
+            Every project starts with a problem,
+            an idea or something we want to make better.
+          </p>
+
+          <p>
+            Sometimes the result is a useful workshop tool.
+            Sometimes it is a fabrication technique.
+            Sometimes the first idea simply does not work.
+          </p>
+
+          <p>
+            That process — building, testing, learning
+            and improving — is what WELD PQ is about.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================
+         STORY TIMELINE
+    ============================= -->
+
+    <section class="timeline-section">
+
+      <div class="container">
+
+        <div class="timeline-heading">
+
+          <p class="label">
+            Our Journey
+          </p>
+
+          <h2>
+            ONE PROJECT<br />
+            AT A TIME.
+          </h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+          {
+            storySections.map((item) => (
+
+              <article class="timeline-row">
+
+                <div class="timeline-number">
+                  {item.number}
+                </div>
+
+
+                <h3>
+                  {item.title}
+                </h3>
+
+
+                <p>
+                  {item.text}
+                </p>
+
+              </article>
+
+            ))
+          }
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================
+         FAILURE / LEARNING
+    ============================= -->
+
+    <section class="learning-section">
+
+      <div class="container learning-grid">
+
+        <div class="learning-title">
+
+          <p class="dark-label">
+            WORKSHOP REALITY
+          </p>
+
+          <h2>
+            NOT EVERYTHING<br />
+            WORKS THE<br />
+            FIRST TIME.
+          </h2>
+
+        </div>
+
+
+        <div class="learning-copy">
+
+          <p class="large-dark-copy">
+            Some of the most useful lessons come
+            from the parts that fail.
+          </p>
+
+          <p>
+            We test ideas in real workshop conditions.
+            When something does not work the way we
+            expected, we change it and build again.
+          </p>
+
+          <p>
+            WELD PQ is not about pretending every project
+            is perfect. It is about understanding why
+            something works — or why it does not.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================
+         PHILOSOPHY
+    ============================= -->
+
+    <section class="philosophy section">
+
+      <div class="container">
+
+        <div class="philosophy-header">
+
+          <p class="label">
+            How We Work
+          </p>
+
+          <h2>
+            THE WELD PQ<br />
+            PROCESS.
+          </h2>
+
+        </div>
+
+
+        <div class="philosophy-grid">
+
+          <div>
+
+            <span>01</span>
+
+            <h3>
+              BUILD
+            </h3>
+
+            <p>
+              Turn an idea into something real.
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <span>02</span>
+
+            <h3>
+              TEST
+            </h3>
+
+            <p>
+              Use it in real workshop conditions.
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <span>03</span>
+
+            <h3>
+              LEARN
+            </h3>
+
+            <p>
+              Understand what works and what does not.
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <span>04</span>
+
+            <h3>
+              SHARE
+            </h3>
+
+            <p>
+              Turn the experience into useful knowledge.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================
+         PQ MEDIA
+    ============================= -->
+
+    <section class="pq-media section">
+
+      <div class="container pq-grid">
+
+        <div>
+
+          <p class="label">
+            Behind WELD PQ
+          </p>
+
+          <h2>
+            PQ<br />
+            MEDIA.
+          </h2>
+
+        </div>
+
+
+        <div class="pq-content">
+
+          <p class="large-copy">
+            WELD PQ is operated by PQ Media
+            in the United States.
+          </p>
+
+          <p>
+            This page is intentionally designed so that
+            our full company story can be expanded as
+            WELD PQ and PQ Media continue to grow.
+          </p>
+
+          <p>
+            More of our history, people and milestones
+            will be added here over time.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================
+         END CTA
+    ============================= -->
+
+    <section class="story-end">
+
+      <div class="container">
+
+        <p>
+          THE STORY IS STILL BEING BUILT.
+        </p>
+
+        <h2>
+          SEE WHAT WE'RE<br />
+          BUILDING NOW.
+        </h2>
+
+
+        <div class="end-actions">
+
+          <a
+            href="/projects/"
+            class="primary-button"
+          >
+            Explore Projects
+            <span>→</span>
+          </a>
+
+
+          <a
+            href="https://www.youtube.com/@WELDPQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-link"
+          >
+            Watch WELD PQ
+            <span>↗</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>
+
+
+<style>
+
+  /* ===========================
+     HERO
+  ============================ */
+
+  .story-hero {
+    padding:
+      135px 0 90px;
+  }
+
+
+  .story-hero h1 {
+    max-width: 1200px;
+
+    margin:
+      0 0 70px;
+
+    font-size:
+      clamp(68px, 8.2vw, 128px);
+
+    font-weight: 600;
+
+    line-height: 0.86;
+
+    letter-spacing:
+      -0.06em;
+  }
+
+
+  .hero-bottom {
+    display: flex;
+
+    justify-content:
+      space-between;
+
+    align-items: flex-end;
+
+    gap: 50px;
+
+    padding-top: 25px;
+
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  .hero-bottom p {
+    max-width: 590px;
+
+    margin: 0;
+
+    font-size: 19px;
+
+    line-height: 1.7;
+  }
+
+
+  .hero-bottom span {
+    color:
+      var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.13em;
+  }
+
+
+  /* ===========================
+     IMAGE
+  ============================ */
+
+  .story-image-section {
+    padding-bottom: 140px;
+  }
+
+
+  .story-image {
+    position: relative;
+
+    height:
+      min(78vh, 850px);
+
+    overflow: hidden;
+
+    background:
+      var(--graphite);
+  }
+
+
+  .story-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+  }
+
+
+  .image-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+      linear-gradient(
+        to bottom,
+        transparent 55%,
+        rgba(0,0,0,0.5)
+      );
+  }
+
+
+  .image-info {
+    position: absolute;
+
+    left: 28px;
+    right: 28px;
+    bottom: 25px;
+
+    display: flex;
+
+    justify-content:
+      space-between;
+
+    gap: 30px;
+
+    padding-top: 18px;
+
+    border-top:
+      1px solid
+      rgba(255,255,255,0.55);
+
+    color: white;
+  }
+
+
+  .image-info span {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.13em;
+  }
+
+
+  /* ===========================
+     INTRO
+  ============================ */
+
+  .intro-grid,
+  .pq-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 7fr)
+      minmax(350px, 5fr);
+
+    gap:
+      clamp(60px, 8vw, 120px);
+  }
+
+
+  .story-intro h2,
+  .pq-media h2 {
+    margin: 0;
+
+    font-size:
+      clamp(52px, 6vw, 90px);
+
+    font-weight: 600;
+
+    line-height: 0.94;
+
+    letter-spacing:
+      -0.05em;
+  }
+
+
+  .large-copy,
+  .large-dark-copy {
+    margin:
+      0 0 35px;
+
+    color:
+      var(--text);
+
+    font-size:
+      clamp(23px, 2.3vw, 31px);
+
+    line-height: 1.45;
+  }
+
+
+  .intro-copy > p:not(.large-copy),
+  .pq-content > p:not(.large-copy) {
+    margin:
+      0 0 25px;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+  }
+
+
+  /* ===========================
+     TIMELINE
+  ============================ */
+
+  .timeline-section {
+    padding:
+      140px 0;
+
+    background:
+      var(--surface);
+
+    border-top:
+      1px solid var(--border);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .timeline-heading {
+    margin-bottom: 80px;
+  }
+
+
+  .timeline-heading h2 {
+    margin: 0;
+
+    font-size:
+      clamp(54px, 6vw, 92px);
+
+    font-weight: 600;
+
+    line-height: 0.94;
+  }
+
+
+  .timeline {
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  .timeline-row {
+    display: grid;
+
+    grid-template-columns:
+      80px
+      minmax(250px, 5fr)
+      minmax(300px, 7fr);
+
+    gap:
+      clamp(30px, 5vw, 70px);
+
+    padding:
+      50px 0;
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .timeline-number {
+    color:
+      var(--text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.12em;
+  }
+
+
+  .timeline-row h3 {
+    margin: 0;
+
+    font-size:
+      clamp(27px, 2.8vw, 40px);
+
+    font-weight: 600;
+
+    line-height: 1;
+  }
+
+
+  .timeline-row p {
+    max-width: 650px;
+
+    margin: 0;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+  }
+
+
+  /* ===========================
+     LEARNING / DARK
+  ============================ */
+
+  .learning-section {
+    padding:
+      140px 0;
+
+    background:
+      var(--graphite);
+
+    color: white;
+  }
+
+
+  .learning-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 7fr)
+      minmax(350px, 5fr);
+
+    gap:
+      clamp(60px, 8vw, 120px);
+  }
+
+
+  .dark-label {
+    margin:
+      0 0 25px;
+
+    color: #c96a5f;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.14em;
+  }
+
+
+  .learning-title h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size:
+      clamp(52px, 6vw, 92px);
+
+    font-weight: 600;
+
+    line-height: 0.94;
+  }
+
+
+  .large-dark-copy {
+    color: white;
+  }
+
+
+  .learning-copy >
+  p:not(.large-dark-copy) {
+    margin:
+      0 0 25px;
+
+    color:
+      rgba(255,255,255,0.65);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+  }
+
+
+  /* ===========================
+     PHILOSOPHY
+  ============================ */
+
+  .philosophy-header {
+    margin-bottom: 75px;
+  }
+
+
+  .philosophy-header h2 {
+    margin: 0;
+
+    font-size:
+      clamp(54px, 6vw, 92px);
+
+    font-weight: 600;
+
+    line-height: 0.94;
+  }
+
+
+  .philosophy-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(4, 1fr);
+
+    border-top:
+      1px solid var(--border);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .philosophy-grid > div {
+    min-height: 260px;
+
+    padding:
+      28px 28px 28px 0;
+  }
+
+
+  .philosophy-grid > div + div {
+    padding-left: 28px;
+
+    border-left:
+      1px solid var(--border);
+  }
+
+
+  .philosophy-grid span {
+    color:
+      var(--text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+  }
+
+
+  .philosophy-grid h3 {
+    margin:
+      80px 0 18px;
+
+    font-size:
+      clamp(28px, 3vw, 42px);
+
+    font-weight: 600;
+  }
+
+
+  .philosophy-grid p {
+    max-width: 230px;
+
+    margin: 0;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+
+  /* ===========================
+     PQ MEDIA
+  ============================ */
+
+  .pq-media {
+    background:
+      var(--surface);
+
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  /* ===========================
+     END
+  ============================ */
+
+  .story-end {
+    padding:
+      130px 0;
+
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  .story-end > .container > p {
+    margin:
+      0 0 30px;
+
+    color:
+      var(--accent);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.14em;
+  }
+
+
+  .story-end h2 {
+    max-width: 900px;
+
+    margin:
+      0 0 55px;
+
+    font-size:
+      clamp(54px, 7vw, 105px);
+
+    font-weight: 600;
+
+    line-height: 0.9;
+
+    letter-spacing:
+      -0.05em;
+  }
+
+
+  .end-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 30px;
+  }
+
+
+  /* ===========================
+     TABLET
+  ============================ */
+
+  @media (max-width: 900px) {
+
+    .intro-grid,
+    .pq-grid,
+    .learning-grid {
+      grid-template-columns: 1fr;
+    }
+
+
+    .timeline-row {
+      grid-template-columns:
+        50px 1fr;
+    }
+
+
+    .timeline-row p {
+      grid-column: 2;
+    }
+
+
+    .philosophy-grid {
+      grid-template-columns:
+        1fr 1fr;
+    }
+
+
+    .philosophy-grid > div:nth-child(3) {
+      padding-left: 0;
+
+      border-left: 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .philosophy-grid > div:nth-child(4) {
+      border-top:
+        1px solid var(--border);
+    }
+
+  }
+
+
+  /* ===========================
+     MOBILE
+  ============================ */
+
+  @media (max-width: 600px) {
+
+    .story-hero {
+      padding:
+        80px 0 60px;
+    }
+
+
+    .hero-bottom {
+      flex-direction: column;
+
+      align-items:
+        flex-start;
+    }
+
+
+    .story-image-section {
+      padding-bottom: 90px;
+    }
+
+
+    .story-image {
+      height: 480px;
+    }
+
+
+    .image-info {
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+
+      flex-direction: column;
+
+      gap: 6px;
+    }
+
+
+    .timeline-section,
+    .learning-section {
+      padding:
+        90px 0;
+    }
+
+
+    .timeline-row {
+      grid-template-columns: 1fr;
+
+      gap: 18px;
+    }
+
+
+    .timeline-row p {
+      grid-column: 1;
+    }
+
+
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+    }
+
+
+    .philosophy-grid > div,
+    .philosophy-grid > div + div,
+    .philosophy-grid > div:nth-child(3) {
+      padding:
+        25px 0;
+
+      border-left: 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .philosophy-grid >
+    div:first-child {
+      border-top: 0;
+    }
+
+
+    .philosophy-grid h3 {
+      margin:
+        45px 0 15px;
+    }
+
+
+    .story-end {
+      padding:
+        90px 0;
+    }
+
+
+    .end-actions {
+      flex-direction: column;
+
+      align-items:
+        flex-start;
+    }
+
+  }
+
+</style>

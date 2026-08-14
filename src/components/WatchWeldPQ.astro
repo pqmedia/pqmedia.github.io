@@ -1,0 +1,689 @@
+---
+import { youtubeVideos } from "../data/youtube";
+
+type YouTubeMetadata = {
+  title: string;
+  author_name: string;
+  thumbnail_url: string;
+};
+
+const videos = (
+  await Promise.all(
+    youtubeVideos.map(async (video) => {
+
+      // Bỏ qua các dòng chưa nhập link thật
+      if (!video.url.startsWith("http")) {
+        return null;
+      }
+
+      try {
+        const endpoint =
+          `https://www.youtube.com/oembed?url=${encodeURIComponent(video.url)}&format=json`;
+
+        const response = await fetch(endpoint);
+
+        if (!response.ok) {
+          throw new Error(
+            `YouTube metadata request failed: ${response.status}`
+          );
+        }
+
+        const metadata =
+          (await response.json()) as YouTubeMetadata;
+
+        return {
+          url: video.url,
+          description: video.description,
+
+          title: metadata.title,
+          channel: metadata.author_name,
+          thumbnail: metadata.thumbnail_url,
+        };
+
+      } catch (error) {
+
+        console.error(
+          "Could not load YouTube video:",
+          video.url,
+          error
+        );
+
+        return null;
+      }
+    })
+  )
+).filter(
+  (video): video is NonNullable<typeof video> =>
+    video !== null
+);
+---
+
+
+<section class="youtube-section">
+
+  <div class="container">
+
+    <!-- SECTION HEADER -->
+
+    <div class="youtube-header">
+
+      <div>
+        <p class="label">
+          05 — YouTube
+        </p>
+
+        <h2>
+          LATEST FROM<br />
+          WELD PQ.
+        </h2>
+      </div>
+
+
+      <div class="header-right">
+
+        <p>
+          Workshop projects, welding techniques,
+          fabrication ideas and homemade tools.
+        </p>
+
+        <a
+          href="https://www.youtube.com/@WELDPQ"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-link"
+        >
+          Visit YouTube Channel
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- VIDEOS -->
+
+    {
+      videos.length > 0 ? (
+
+        <div class="video-grid">
+
+          {
+            videos.map((video, index) => (
+
+              <article class="video-card">
+
+                <!-- THUMBNAIL -->
+
+                <a
+                  href={video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="video-image"
+                >
+
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    loading="lazy"
+                  />
+
+                  <div class="image-overlay"></div>
+
+
+                  <div class="play-button">
+                    ▶
+                  </div>
+
+
+                  <div class="video-number">
+                    VIDEO / {String(index + 1).padStart(2, "0")}
+                  </div>
+
+                </a>
+
+
+                <!-- CONTENT -->
+
+                <div class="video-content">
+
+                  <div class="video-meta">
+                    <span>
+                      YOUTUBE
+                    </span>
+
+                    <span>
+                      {video.channel}
+                    </span>
+                  </div>
+
+
+                  <h3>
+                    <a
+                      href={video.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {video.title}
+                    </a>
+                  </h3>
+
+
+                  {
+                    video.description && (
+                      <p class="description">
+                        {video.description}
+                      </p>
+                    )
+                  }
+
+
+                  <a
+                    href={video.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="video-link"
+                  >
+                    Watch Video
+                    <span>↗</span>
+                  </a>
+
+                </div>
+
+              </article>
+
+            ))
+          }
+
+        </div>
+
+      ) : (
+
+        <div class="empty-state">
+
+          <p>
+            Add YouTube video links in
+            <strong> src/data/youtube.ts </strong>
+            to display videos here.
+          </p>
+
+        </div>
+
+      )
+    }
+
+
+    <!-- BOTTOM -->
+
+    <div class="youtube-bottom">
+
+      <a
+        href="https://www.youtube.com/@WELDPQ"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="channel-link"
+      >
+
+        <span>
+          Explore All Videos on YouTube
+        </span>
+
+        <span class="arrow">
+          ↗
+        </span>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<style>
+
+  .youtube-section {
+    padding: 140px 0;
+
+    background:
+      var(--graphite);
+
+    color: white;
+  }
+
+
+  /* ===============================
+     HEADER
+  ================================ */
+
+  .youtube-header {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 2fr)
+      minmax(280px, 1fr);
+
+    gap: 80px;
+
+    align-items: end;
+
+    margin-bottom: 90px;
+  }
+
+
+  .youtube-header .label {
+    color: #c96a5f;
+  }
+
+
+  .youtube-header h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size:
+      clamp(54px, 6vw, 92px);
+
+    font-weight: 600;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.045em;
+  }
+
+
+  .header-right {
+    max-width: 430px;
+  }
+
+
+  .header-right p {
+    margin: 0 0 28px;
+
+    color:
+      rgba(255,255,255,0.65);
+
+    font-size: 17px;
+
+    line-height: 1.75;
+  }
+
+
+  .header-right .text-link {
+    color: white;
+  }
+
+
+  /* ===============================
+     VIDEO GRID
+  ================================ */
+
+  .video-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 38px;
+  }
+
+
+  .video-card {
+    min-width: 0;
+  }
+
+
+  /* IMAGE */
+
+  .video-image {
+    position: relative;
+
+    display: block;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background: #111;
+  }
+
+
+  .video-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+      transform 0.8s ease;
+  }
+
+
+  .video-image:hover img {
+    transform: scale(1.035);
+  }
+
+
+  .image-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.02) 40%,
+        rgba(0,0,0,0.48) 100%
+      );
+  }
+
+
+  /* PLAY BUTTON */
+
+  .play-button {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transform:
+      translate(-50%, -50%);
+
+    border:
+      1px solid rgba(255,255,255,0.8);
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 15px;
+
+    padding-left: 3px;
+
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+
+  .video-image:hover
+  .play-button {
+    background: white;
+
+    color: var(--graphite);
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.06);
+  }
+
+
+  /* VIDEO NUMBER */
+
+  .video-number {
+    position: absolute;
+
+    left: 18px;
+    bottom: 16px;
+
+    color: white;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  /* ===============================
+     VIDEO CONTENT
+  ================================ */
+
+  .video-content {
+    padding-top: 24px;
+  }
+
+
+  .video-meta {
+    display: flex;
+
+    justify-content:
+      space-between;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+
+    color:
+      rgba(255,255,255,0.5);
+  }
+
+
+  .video-meta span {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+
+    text-transform: uppercase;
+  }
+
+
+  .video-content h3 {
+    margin: 0 0 20px;
+
+    color: white;
+
+    font-size:
+      clamp(25px, 2.2vw, 34px);
+
+    font-weight: 600;
+
+    line-height: 1.15;
+
+    letter-spacing: -0.035em;
+  }
+
+
+  .video-content h3 a {
+    transition:
+      color 0.2s ease;
+  }
+
+
+  .video-content h3 a:hover {
+    color: #d77b70;
+  }
+
+
+  .description {
+    margin: 0 0 26px;
+
+    color:
+      rgba(255,255,255,0.62);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+
+  .video-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+  }
+
+
+  .video-link span {
+    transition:
+      transform 0.2s ease;
+  }
+
+
+  .video-link:hover span {
+    transform:
+      translate(4px, -4px);
+  }
+
+
+  /* ===============================
+     EMPTY STATE
+  ================================ */
+
+  .empty-state {
+    padding: 70px 0;
+
+    border-top:
+      1px solid rgba(255,255,255,0.2);
+
+    border-bottom:
+      1px solid rgba(255,255,255,0.2);
+  }
+
+
+  .empty-state p {
+    color:
+      rgba(255,255,255,0.6);
+  }
+
+
+  /* ===============================
+     BOTTOM LINK
+  ================================ */
+
+  .youtube-bottom {
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 65px;
+  }
+
+
+  .channel-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 70px;
+
+    padding-bottom: 12px;
+
+    border-bottom:
+      1px solid rgba(255,255,255,0.65);
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+  }
+
+
+  .arrow {
+    transition:
+      transform 0.2s ease;
+  }
+
+
+  .channel-link:hover .arrow {
+    transform:
+      translate(4px, -4px);
+  }
+
+
+  /* ===============================
+     TABLET
+  ================================ */
+
+  @media (max-width: 950px) {
+
+    .youtube-section {
+      padding: 105px 0;
+    }
+
+
+    .youtube-header {
+      grid-template-columns: 1fr;
+
+      gap: 30px;
+
+      margin-bottom: 65px;
+    }
+
+
+    .video-grid {
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    }
+
+  }
+
+
+  /* ===============================
+     MOBILE
+  ================================ */
+
+  @media (max-width: 650px) {
+
+    .youtube-section {
+      padding: 85px 0;
+    }
+
+
+    .video-grid {
+      grid-template-columns: 1fr;
+
+      gap: 55px;
+    }
+
+
+    .video-content h3 {
+      font-size: 28px;
+    }
+
+
+    .youtube-bottom {
+      justify-content: stretch;
+    }
+
+
+    .channel-link {
+      width: 100%;
+
+      justify-content:
+        space-between;
+    }
+
+  }
+
+</style>

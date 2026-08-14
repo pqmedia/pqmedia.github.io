@@ -1,0 +1,976 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+import {
+  getCollection,
+  render,
+} from "astro:content";
+
+
+export async function getStaticPaths() {
+
+  const projects = await getCollection(
+    "projects",
+    ({ data }) => data.draft !== true
+  );
+
+  return projects.map((project) => ({
+    params: {
+      id: project.id,
+    },
+
+    props: {
+      project,
+    },
+  }));
+}
+
+
+const { project } = Astro.props;
+
+const { Content } = await render(project);
+
+
+/*
+  Chuyển link YouTube thành link embed.
+
+  Hỗ trợ:
+  youtube.com/watch?v=...
+  youtu.be/...
+*/
+
+function getYouTubeEmbed(url?: string) {
+
+  if (!url) return null;
+
+  try {
+
+    const parsed = new URL(url);
+
+    if (parsed.hostname.includes("youtu.be")) {
+
+      const id =
+        parsed.pathname.replace("/", "");
+
+      return id
+        ? `https://www.youtube.com/embed/${id}`
+        : null;
+    }
+
+
+    if (parsed.hostname.includes("youtube.com")) {
+
+      const id =
+        parsed.searchParams.get("v");
+
+      return id
+        ? `https://www.youtube.com/embed/${id}`
+        : null;
+    }
+
+  } catch {
+
+    return null;
+
+  }
+
+  return null;
+}
+
+
+const youtubeEmbed =
+  getYouTubeEmbed(project.data.youtube);
+---
+
+<BaseLayout
+  title={`${project.data.title} — WELD PQ`}
+  description={project.data.description}
+>
+
+  <Header />
+
+
+  <main>
+
+    <!-- PROJECT HEADER -->
+
+    <section class="project-header">
+
+      <div class="container">
+
+        <p class="label">
+          WELD PQ / PROJECT
+        </p>
+
+
+        <h1>
+          {project.data.title}
+        </h1>
+
+
+        <p class="project-description">
+          {project.data.description}
+        </p>
+
+
+        <div class="header-meta">
+
+          <div>
+            <span>CATEGORY</span>
+
+            <strong>
+              {project.data.category}
+            </strong>
+          </div>
+
+
+          {
+            project.data.material && (
+
+              <div>
+                <span>MATERIAL</span>
+
+                <strong>
+                  {project.data.material}
+                </strong>
+              </div>
+
+            )
+          }
+
+
+          {
+            project.data.difficulty && (
+
+              <div>
+                <span>DIFFICULTY</span>
+
+                <strong>
+                  {project.data.difficulty}
+                </strong>
+              </div>
+
+            )
+          }
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HERO IMAGE -->
+
+    <div class="project-hero-image">
+
+      <img
+        src={project.data.image}
+        alt={project.data.imageAlt}
+      />
+
+      <div class="image-info">
+
+        <span>
+          WELD PQ
+        </span>
+
+        <span>
+          BUILT IN THE WORKSHOP
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- PROJECT SNAPSHOT -->
+
+    <section class="snapshot">
+
+      <div class="container">
+
+        <p class="snapshot-title">
+          PROJECT SNAPSHOT
+        </p>
+
+
+        <div class="snapshot-grid">
+
+          <div>
+            <span>TYPE</span>
+
+            <strong>
+              {project.data.category}
+            </strong>
+          </div>
+
+
+          {
+            project.data.material && (
+
+              <div>
+                <span>MATERIAL</span>
+
+                <strong>
+                  {project.data.material}
+                </strong>
+              </div>
+
+            )
+          }
+
+
+          {
+            project.data.difficulty && (
+
+              <div>
+                <span>DIFFICULTY</span>
+
+                <strong>
+                  {project.data.difficulty}
+                </strong>
+              </div>
+
+            )
+          }
+
+
+          <div>
+            <span>DATE</span>
+
+            <strong>
+
+              {
+                project.data.pubDate.toLocaleDateString(
+                  "en-US",
+                  {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  }
+                )
+              }
+
+            </strong>
+          </div>
+
+        </div>
+
+
+        {
+          project.data.processes.length > 0 && (
+
+            <div class="processes">
+
+              <span class="process-title">
+                PROCESSES
+              </span>
+
+
+              <div class="process-list">
+
+                {
+                  project.data.processes.map(
+                    (process) => (
+
+                      <span>
+                        {process}
+                      </span>
+
+                    )
+                  )
+                }
+
+              </div>
+
+            </div>
+
+          )
+        }
+
+      </div>
+
+    </section>
+
+
+    <!-- YOUTUBE -->
+
+    {
+      youtubeEmbed && (
+
+        <section class="video-section">
+
+          <div class="container">
+
+            <div class="video-heading">
+
+              <div>
+
+                <p class="label">
+                  Watch The Build
+                </p>
+
+                <h2>
+                  SEE HOW<br />
+                  WE BUILT IT.
+                </h2>
+
+              </div>
+
+
+              <p>
+                Watch the complete build process
+                on the WELD PQ YouTube channel.
+              </p>
+
+            </div>
+
+
+            <div class="video-wrapper">
+
+              <iframe
+                src={youtubeEmbed}
+                title={`${project.data.title} — WELD PQ`}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+
+            </div>
+
+
+            <a
+              href={project.data.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="youtube-link"
+            >
+              Watch on YouTube ↗
+            </a>
+
+          </div>
+
+        </section>
+
+      )
+    }
+
+
+    <!-- MARKDOWN CONTENT -->
+
+    <section class="project-content">
+
+      <div class="content-wrapper">
+
+        <Content />
+
+      </div>
+
+    </section>
+
+
+    <!-- END CTA -->
+
+    <section class="project-end">
+
+      <div class="container">
+
+        <p>
+          MORE FROM THE WORKSHOP
+        </p>
+
+        <a href="/projects/">
+          Explore All Projects
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <Footer />
+
+</BaseLayout>
+
+
+<style>
+
+  /* ===============================
+     HEADER
+  ================================ */
+
+  .project-header {
+    padding:
+      120px 0 80px;
+  }
+
+
+  .project-header h1 {
+    max-width: 1100px;
+
+    margin: 0 0 42px;
+
+    font-size:
+      clamp(58px, 7.5vw, 115px);
+
+    font-weight: 600;
+
+    line-height: 0.92;
+
+    letter-spacing: -0.055em;
+  }
+
+
+  .project-description {
+    max-width: 720px;
+
+    margin: 0 0 50px;
+
+    font-size: 21px;
+
+    line-height: 1.65;
+  }
+
+
+  .header-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0;
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+  }
+
+
+  .header-meta > div {
+    min-width: 190px;
+
+    padding: 18px 35px 18px 0;
+  }
+
+
+  .header-meta > div + div {
+    padding-left: 35px;
+
+    border-left: 1px solid var(--border);
+  }
+
+
+  .header-meta span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  .header-meta strong {
+    font-size: 13px;
+  }
+
+
+  /* ===============================
+     PROJECT IMAGE
+  ================================ */
+
+  .project-hero-image {
+    position: relative;
+
+    width:
+      min(calc(100% - 48px), 1360px);
+
+    height:
+      min(78vh, 850px);
+
+    margin-inline: auto;
+
+    overflow: hidden;
+
+    background: var(--graphite);
+  }
+
+
+  .project-hero-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+
+  .image-info {
+    position: absolute;
+
+    left: 28px;
+    right: 28px;
+    bottom: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding-top: 18px;
+
+    border-top:
+      1px solid rgba(255,255,255,0.55);
+
+    color: white;
+  }
+
+
+  .image-info span {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  /* ===============================
+     SNAPSHOT
+  ================================ */
+
+  .snapshot {
+    padding: 100px 0;
+  }
+
+
+  .snapshot-title {
+    margin: 0 0 30px;
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+  }
+
+
+  .snapshot-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(4, 1fr);
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+  }
+
+
+  .snapshot-grid > div {
+    padding: 25px 20px 25px 0;
+  }
+
+
+  .snapshot-grid > div + div {
+    padding-left: 20px;
+
+    border-left: 1px solid var(--border);
+  }
+
+
+  .snapshot-grid span,
+  .process-title {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  .snapshot-grid strong {
+    font-size: 14px;
+  }
+
+
+  .processes {
+    display: grid;
+
+    grid-template-columns:
+      170px 1fr;
+
+    gap: 30px;
+
+    padding-top: 35px;
+  }
+
+
+  .process-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+  }
+
+
+  .process-list span {
+    padding: 9px 12px;
+
+    border: 1px solid var(--border);
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+  }
+
+
+  /* ===============================
+     VIDEO
+  ================================ */
+
+  .video-section {
+    padding: 120px 0;
+
+    background: var(--graphite);
+
+    color: white;
+  }
+
+
+  .video-heading {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 2fr)
+      minmax(280px, 1fr);
+
+    gap: 70px;
+
+    align-items: end;
+
+    margin-bottom: 60px;
+  }
+
+
+  .video-heading .label {
+    color: #c96a5f;
+  }
+
+
+  .video-heading h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size:
+      clamp(50px, 6vw, 90px);
+
+    font-weight: 600;
+
+    line-height: 0.94;
+  }
+
+
+  .video-heading > p {
+    max-width: 420px;
+
+    margin: 0;
+
+    color:
+      rgba(255,255,255,0.65);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+  }
+
+
+  .video-wrapper {
+    position: relative;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background: #000;
+  }
+
+
+  .video-wrapper iframe {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+  }
+
+
+  .youtube-link {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+  }
+
+
+  /* ===============================
+     MARKDOWN
+  ================================ */
+
+  .project-content {
+    padding: 120px 0 150px;
+  }
+
+
+  .content-wrapper {
+    width:
+      min(calc(100% - 48px), 780px);
+
+    margin-inline: auto;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+  }
+
+
+  .content-wrapper :global(h2) {
+    margin: 80px 0 25px;
+
+    font-size:
+      clamp(36px, 4vw, 54px);
+
+    font-weight: 600;
+
+    line-height: 1.04;
+
+    letter-spacing: -0.035em;
+  }
+
+
+  .content-wrapper :global(h3) {
+    margin: 50px 0 20px;
+
+    font-size: 29px;
+
+    font-weight: 600;
+  }
+
+
+  .content-wrapper :global(p) {
+    margin: 0 0 28px;
+  }
+
+
+  .content-wrapper :global(ul),
+  .content-wrapper :global(ol) {
+    margin: 0 0 30px;
+
+    padding-left: 24px;
+  }
+
+
+  .content-wrapper :global(li) {
+    margin-bottom: 10px;
+  }
+
+
+  /* ===============================
+     END
+  ================================ */
+
+  .project-end {
+    padding: 70px 0;
+
+    border-top: 1px solid var(--border);
+  }
+
+
+  .project-end .container {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+  }
+
+
+  .project-end p {
+    margin: 0;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  .project-end a {
+    display: flex;
+
+    gap: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+  }
+
+
+  /* ===============================
+     TABLET
+  ================================ */
+
+  @media (max-width: 900px) {
+
+    .snapshot-grid {
+      grid-template-columns:
+        1fr 1fr;
+    }
+
+
+    .snapshot-grid > div:nth-child(3) {
+      padding-left: 0;
+
+      border-left: 0;
+
+      border-top: 1px solid var(--border);
+    }
+
+
+    .snapshot-grid > div:nth-child(4) {
+      border-top: 1px solid var(--border);
+    }
+
+
+    .video-heading {
+      grid-template-columns: 1fr;
+
+      gap: 30px;
+    }
+
+  }
+
+
+  /* ===============================
+     MOBILE
+  ================================ */
+
+  @media (max-width: 600px) {
+
+    .project-header {
+      padding: 80px 0 60px;
+    }
+
+
+    .project-hero-image {
+      width: calc(100% - 32px);
+
+      height: 470px;
+    }
+
+
+    .snapshot {
+      padding: 70px 0;
+    }
+
+
+    .snapshot-grid {
+      grid-template-columns: 1fr;
+    }
+
+
+    .snapshot-grid > div,
+    .snapshot-grid > div + div,
+    .snapshot-grid > div:nth-child(3) {
+      padding:
+        18px 0;
+
+      border-left: 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .snapshot-grid > div:first-child {
+      border-top: 0;
+    }
+
+
+    .processes {
+      grid-template-columns: 1fr;
+
+      gap: 15px;
+    }
+
+
+    .video-section {
+      padding: 85px 0;
+    }
+
+
+    .project-content {
+      padding: 80px 0 100px;
+    }
+
+
+    .content-wrapper {
+      width: calc(100% - 32px);
+
+      font-size: 17px;
+    }
+
+
+    .project-end .container {
+      flex-direction: column;
+
+      align-items: flex-start;
+    }
+
+  }
+
+</style>

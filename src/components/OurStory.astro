@@ -1,0 +1,325 @@
+<section class="our-story section">
+  <div class="container">
+
+    <div class="story-grid">
+
+      <div class="story-image">
+        <img
+          src="/images/story/story-home.jpg"
+          alt="The team behind WELD PQ"
+        />
+
+        <div class="story-overlay"></div>
+
+        <span class="story-code">
+          WELD PQ / OUR STORY
+        </span>
+      </div>
+
+
+      <div class="story-content">
+
+        <p class="label">
+          04 — Our Story
+        </p>
+
+        <h2>
+          BUILT FROM<br />
+          THE WORKSHOP.
+        </h2>
+
+        <p class="lead">
+          WELD PQ is about building useful things,
+          solving real workshop problems and sharing
+          what we learn along the way.
+        </p>
+
+        <p class="body-copy">
+          From welding techniques and fabrication ideas
+          to homemade shop tools, our work starts with
+          real projects and real problems.
+        </p>
+
+        <p class="body-copy">
+          Behind WELD PQ is a small team operated by
+          PQ Media in the United States. Our full story
+          is still being written — one project at a time.
+        </p>
+
+
+        <div class="story-philosophy">
+
+          <div>
+            <span>01</span>
+            <strong>BUILD</strong>
+          </div>
+
+          <div>
+            <span>02</span>
+            <strong>TEST</strong>
+          </div>
+
+          <div>
+            <span>03</span>
+            <strong>LEARN</strong>
+          </div>
+
+          <div>
+            <span>04</span>
+            <strong>SHARE</strong>
+          </div>
+
+        </div>
+
+
+        <a href="/our-story" class="primary-button">
+          Read Our Story
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+  .our-story {
+    background: var(--surface);
+
+    border-top: 1px solid var(--border);
+  }
+
+
+  .story-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 7fr)
+      minmax(360px, 5fr);
+
+    gap: clamp(50px, 7vw, 100px);
+
+    align-items: stretch;
+  }
+
+
+  /* IMAGE */
+
+  .story-image {
+    position: relative;
+
+    min-height: 720px;
+
+    overflow: hidden;
+
+    background: var(--graphite);
+  }
+
+
+  .story-image img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transition: transform 0.9s ease;
+  }
+
+
+  .story-image:hover img {
+    transform: scale(1.02);
+  }
+
+
+  .story-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.02) 45%,
+        rgba(0,0,0,0.48) 100%
+      );
+  }
+
+
+  .story-code {
+    position: absolute;
+
+    left: 26px;
+    bottom: 24px;
+
+    z-index: 2;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+  }
+
+
+  /* CONTENT */
+
+  .story-content {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+  }
+
+
+  .story-content h2 {
+    margin: 0 0 45px;
+
+    font-size: clamp(52px, 5.6vw, 86px);
+
+    font-weight: 600;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.045em;
+  }
+
+
+  .lead {
+    max-width: 500px;
+
+    margin: 0 0 30px;
+
+    color: var(--text);
+
+    font-size: 22px;
+
+    line-height: 1.55;
+  }
+
+
+  .body-copy {
+    max-width: 490px;
+
+    margin: 0 0 22px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+  }
+
+
+  /* PHILOSOPHY */
+
+  .story-philosophy {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(4, 1fr);
+
+    margin: 30px 0 45px;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+
+  .story-philosophy > div {
+    padding: 20px 14px 20px 0;
+  }
+
+
+  .story-philosophy > div + div {
+    padding-left: 14px;
+
+    border-left: 1px solid var(--border);
+  }
+
+
+  .story-philosophy span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+  }
+
+
+  .story-philosophy strong {
+    font-size: 12px;
+
+    letter-spacing: 0.08em;
+  }
+
+
+  /* TABLET */
+
+  @media (max-width: 900px) {
+
+    .story-grid {
+      grid-template-columns: 1fr;
+    }
+
+
+    .story-image {
+      min-height: 560px;
+    }
+
+
+    .story-content {
+      padding-top: 20px;
+    }
+
+  }
+
+
+  /* MOBILE */
+
+  @media (max-width: 600px) {
+
+    .story-image {
+      min-height: 440px;
+    }
+
+
+    .story-philosophy {
+      grid-template-columns: 1fr 1fr;
+    }
+
+
+    .story-philosophy > div:nth-child(3),
+    .story-philosophy > div:nth-child(4) {
+      border-top: 1px solid var(--border);
+    }
+
+
+    .story-philosophy > div:nth-child(3) {
+      padding-left: 0;
+
+      border-left: 0;
+    }
+
+  }
+
+</style>

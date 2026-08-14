@@ -1,0 +1,212 @@
+<footer class="site-footer">
+  <div class="container">
+
+    <div class="footer-main">
+
+      <div class="footer-brand">
+        <a href="/" class="brand">
+          WELD PQ
+        </a>
+
+        <p>
+          Practical welding, fabrication,
+          shop tools and ideas from the workshop.
+        </p>
+      </div>
+
+
+      <div class="footer-nav">
+
+        <div>
+          <span class="nav-title">Explore</span>
+
+          <a href="/projects">Projects</a>
+          <a href="/blog">Blog</a>
+          <a href="/our-story">Our Story</a>
+        </div>
+
+
+        <div>
+          <span class="nav-title">Company</span>
+
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </div>
+
+
+        <div>
+          <span class="nav-title">Follow</span>
+
+          <a
+            href="https://www.youtube.com/@WELDPQ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube ↗
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <div>
+        <span>WELD PQ</span>
+        <span>Operated by PQ Media</span>
+        <span>United States</span>
+      </div>
+
+
+      <div>
+        <span>© 2026 PQ Media</span>
+        <span>All rights reserved.</span>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+
+<style>
+  .site-footer {
+    padding: 100px 0 32px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: minmax(300px, 5fr) minmax(0, 7fr);
+    gap: 80px;
+    padding-bottom: 90px;
+  }
+
+
+  .brand {
+    display: inline-block;
+    margin-bottom: 25px;
+
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 800;
+
+    letter-spacing: -0.05em;
+  }
+
+
+  .footer-brand p {
+    max-width: 350px;
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+  }
+
+
+  .footer-nav > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+
+  .nav-title {
+    margin-bottom: 12px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+
+  .footer-nav a {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+
+  .footer-nav a:hover {
+    color: var(--accent);
+  }
+
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    padding-top: 24px;
+
+    border-top: 1px solid var(--border);
+  }
+
+
+  .footer-bottom > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+
+
+  .footer-bottom span {
+    color: var(--text-secondary);
+
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+
+  @media (max-width: 800px) {
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 65px;
+    }
+  }
+
+
+  @media (max-width: 600px) {
+    .site-footer {
+      padding: 75px 0 25px;
+    }
+
+    .footer-main {
+      padding-bottom: 65px;
+    }
+
+    .footer-nav {
+      grid-template-columns: 1fr 1fr;
+      gap: 50px 30px;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .footer-bottom > div {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>

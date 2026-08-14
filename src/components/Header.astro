@@ -1,0 +1,581 @@
+<header class="site-header">
+
+  <div class="container header-inner">
+
+    <a href="/" class="brand">
+      WELD PQ
+    </a>
+
+
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+      <a href="/projects/">Projects</a>
+      <a href="/blog/">Blog</a>
+      <a href="/our-story/">Our Story</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+
+
+    <a
+      class="youtube-link"
+      href="https://www.youtube.com/@WELDPQ"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      YouTube ↗
+    </a>
+
+
+    <button
+      class="menu-button"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+
+  <div
+    id="mobile-menu"
+    class="mobile-menu"
+    hidden
+  >
+
+    <div class="container mobile-menu-inner">
+
+      <nav
+        class="mobile-nav"
+        aria-label="Mobile navigation"
+      >
+
+        <a href="/projects/">
+          <span>01</span>
+          <strong>Projects</strong>
+        </a>
+
+        <a href="/blog/">
+          <span>02</span>
+          <strong>Blog</strong>
+        </a>
+
+        <a href="/our-story/">
+          <span>03</span>
+          <strong>Our Story</strong>
+        </a>
+
+        <a href="/about/">
+          <span>04</span>
+          <strong>About</strong>
+        </a>
+
+        <a href="/contact/">
+          <span>05</span>
+          <strong>Contact</strong>
+        </a>
+
+      </nav>
+
+
+      <div class="mobile-footer">
+
+        <p>
+          WELD PQ<br />
+          PQ MEDIA / USA
+        </p>
+
+
+        <a
+          href="https://www.youtube.com/@WELDPQ"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          YouTube ↗
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<script>
+
+  const menuButton =
+    document.querySelector(".menu-button");
+
+  const mobileMenu =
+    document.querySelector("#mobile-menu");
+
+
+  function openMenu() {
+
+    if (
+      !(menuButton instanceof HTMLButtonElement) ||
+      !(mobileMenu instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    mobileMenu.hidden = false;
+
+    menuButton.classList.add("is-open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+    document.body.classList.add(
+      "mobile-menu-open"
+    );
+
+  }
+
+
+  function closeMenu() {
+
+    if (
+      !(menuButton instanceof HTMLButtonElement) ||
+      !(mobileMenu instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    mobileMenu.hidden = true;
+
+    menuButton.classList.remove("is-open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    document.body.classList.remove(
+      "mobile-menu-open"
+    );
+
+  }
+
+
+  function toggleMenu() {
+
+    if (!(mobileMenu instanceof HTMLElement)) {
+      return;
+    }
+
+    if (mobileMenu.hidden) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+
+  }
+
+
+  menuButton?.addEventListener(
+    "click",
+    toggleMenu
+  );
+
+
+  document
+    .querySelectorAll(".mobile-nav a")
+    .forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        closeMenu
+      );
+
+    });
+
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+
+    }
+  );
+
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      if (window.innerWidth > 900) {
+        closeMenu();
+      }
+
+    }
+  );
+
+</script>
+
+
+<style>
+
+  /* ==============================
+     HEADER
+  ============================== */
+
+  .site-header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    height: 72px;
+
+    background: var(--bg);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .header-inner {
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 40px;
+  }
+
+
+  /* ==============================
+     BRAND
+  ============================== */
+
+  .brand {
+    font-family:
+      var(--font-heading);
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+  }
+
+
+  /* ==============================
+     DESKTOP NAV
+  ============================== */
+
+  .desktop-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+  }
+
+
+  .desktop-nav a,
+  .youtube-link {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+  }
+
+
+  .desktop-nav a {
+    position: relative;
+  }
+
+
+  .desktop-nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 1px;
+
+    background: var(--accent);
+
+    transition:
+      width 0.2s ease;
+  }
+
+
+  .desktop-nav a:hover::after {
+    width: 100%;
+  }
+
+
+  .youtube-link {
+    justify-self: end;
+  }
+
+
+  /* ==============================
+     MOBILE BUTTON
+  ============================== */
+
+  .menu-button {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+  }
+
+
+  .menu-button span {
+    display: block;
+
+    width: 24px;
+    height: 1px;
+
+    margin-left: auto;
+
+    background: var(--text);
+
+    transition:
+      transform 0.25s ease,
+      width 0.25s ease;
+  }
+
+
+  .menu-button span + span {
+    width: 17px;
+
+    margin-top: 7px;
+  }
+
+
+  .menu-button.is-open span:first-child {
+    width: 24px;
+
+    transform:
+      translateY(4px)
+      rotate(45deg);
+  }
+
+
+  .menu-button.is-open span:last-child {
+    width: 24px;
+
+    transform:
+      translateY(-4px)
+      rotate(-45deg);
+  }
+
+
+  /* ==============================
+     MOBILE MENU
+  ============================== */
+
+  .mobile-menu {
+    display: none;
+  }
+
+
+  .mobile-menu[hidden] {
+    display: none !important;
+  }
+
+
+  /* ==============================
+     TABLET / MOBILE
+  ============================== */
+
+  @media (max-width: 900px) {
+
+    .site-header {
+      height: 68px;
+    }
+
+
+    .header-inner {
+      grid-template-columns:
+        1fr auto;
+    }
+
+
+    .desktop-nav,
+    .youtube-link {
+      display: none;
+    }
+
+
+    .menu-button {
+      display: block;
+
+      justify-self: end;
+    }
+
+
+    .mobile-menu:not([hidden]) {
+      position: fixed;
+
+      top: 68px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      z-index: 999;
+
+      display: block;
+
+      overflow-y: auto;
+
+      background: var(--bg);
+    }
+
+
+    .mobile-menu-inner {
+      min-height:
+        calc(100vh - 68px);
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: space-between;
+
+      padding-top: 35px;
+      padding-bottom: 30px;
+    }
+
+
+    .mobile-nav {
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .mobile-nav a {
+      display: grid;
+
+      grid-template-columns:
+        45px 1fr;
+
+      align-items: center;
+
+      padding: 18px 0;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+
+    .mobile-nav span {
+      color:
+        var(--text-secondary);
+
+      font-size: 9px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.12em;
+    }
+
+
+    .mobile-nav strong {
+      font-family:
+        var(--font-heading);
+
+      font-size:
+        clamp(31px, 8vw, 45px);
+
+      font-weight: 600;
+
+      line-height: 1;
+
+      letter-spacing:
+        -0.04em;
+    }
+
+
+    .mobile-footer {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      gap: 30px;
+
+      margin-top: 50px;
+
+      padding-top: 20px;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .mobile-footer p {
+      margin: 0;
+
+      font-size: 9px;
+
+      font-weight: 700;
+
+      line-height: 1.6;
+
+      letter-spacing: 0.1em;
+    }
+
+
+    .mobile-footer a {
+      font-size: 10px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.1em;
+
+      text-transform: uppercase;
+    }
+
+  }
+
+</style>
+
+
+<style is:global>
+
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+
+</style>

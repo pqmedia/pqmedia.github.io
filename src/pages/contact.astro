@@ -1,0 +1,431 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Contact — WELD PQ"
+  description="Contact WELD PQ and PQ Media for questions, collaborations and business inquiries."
+>
+  <Header />
+
+  <main>
+
+    <section class="contact-hero">
+      <div class="container">
+
+        <p class="label">
+          WELD PQ / CONTACT
+        </p>
+
+        <h1>
+          LET'S<br />
+          TALK.
+        </h1>
+
+        <p class="intro">
+          Questions, collaboration ideas or
+          business inquiries? Get in touch with WELD PQ.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section class="contact-section">
+      <div class="container">
+
+        <div class="contact-list">
+
+          <article class="contact-row">
+
+            <span class="number">
+              01
+            </span>
+
+            <h2>
+              GENERAL
+            </h2>
+
+            <div>
+              <p>
+                Questions about WELD PQ,
+                our projects or workshop content.
+              </p>
+
+              <span class="coming">
+                CONTACT EMAIL TO BE ADDED
+              </span>
+            </div>
+
+          </article>
+
+
+          <article class="contact-row">
+
+            <span class="number">
+              02
+            </span>
+
+            <h2>
+              BUSINESS &<br />
+              PARTNERSHIPS
+            </h2>
+
+            <div>
+              <p>
+                Brand collaborations, sponsorships,
+                partnerships and commercial inquiries.
+              </p>
+
+              <span class="coming">
+                BUSINESS EMAIL TO BE ADDED
+              </span>
+            </div>
+
+          </article>
+
+
+          <article class="contact-row">
+
+            <span class="number">
+              03
+            </span>
+
+            <h2>
+              YOUTUBE
+            </h2>
+
+            <div>
+              <p>
+                Watch our latest projects,
+                workshop ideas and fabrication content.
+              </p>
+
+              <a
+                href="https://www.youtube.com/@WELDPQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link"
+              >
+                @WELDPQ ↗
+              </a>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="company-contact">
+      <div class="container company-grid">
+
+        <div>
+
+          <p class="dark-label">
+            COMPANY
+          </p>
+
+          <h2>
+            PQ<br />
+            MEDIA.
+          </h2>
+
+        </div>
+
+
+        <div>
+
+          <p class="company-lead">
+            WELD PQ is operated by PQ Media
+            in the United States.
+          </p>
+
+          <p>
+            Company and business contact information
+            can be added here once the public contact
+            details for PQ Media are finalized.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+
+<style>
+
+  .contact-hero {
+    padding:
+      140px 0 110px;
+  }
+
+
+  .contact-hero h1 {
+    margin: 0 0 50px;
+
+    font-size:
+      clamp(82px, 11vw, 170px);
+
+    font-weight: 600;
+
+    line-height: 0.82;
+
+    letter-spacing:
+      -0.065em;
+  }
+
+
+  .intro {
+    max-width: 620px;
+
+    margin: 0;
+
+    font-size: 21px;
+
+    line-height: 1.65;
+  }
+
+
+  .contact-section {
+    padding-bottom: 140px;
+  }
+
+
+  .contact-list {
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  .contact-row {
+    display: grid;
+
+    grid-template-columns:
+      70px
+      minmax(300px, 5fr)
+      minmax(320px, 7fr);
+
+    gap:
+      clamp(30px, 5vw, 70px);
+
+    padding: 60px 0;
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .number {
+    color:
+      var(--text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.12em;
+  }
+
+
+  .contact-row h2 {
+    margin: 0;
+
+    font-size:
+      clamp(34px, 4vw, 58px);
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    letter-spacing:
+      -0.04em;
+  }
+
+
+  .contact-row p {
+    max-width: 500px;
+
+    margin:
+      0 0 25px;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+  }
+
+
+  .coming {
+    color:
+      var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.12em;
+  }
+
+
+  .contact-link {
+    display: inline-flex;
+
+    padding-bottom: 8px;
+
+    border-bottom:
+      1px solid var(--text);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.1em;
+  }
+
+
+  .company-contact {
+    padding: 140px 0;
+
+    background:
+      var(--graphite);
+
+    color: white;
+  }
+
+
+  .company-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 7fr)
+      minmax(350px, 5fr);
+
+    gap:
+      clamp(60px, 8vw, 120px);
+  }
+
+
+  .dark-label {
+    margin: 0 0 25px;
+
+    color: #c96a5f;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.14em;
+  }
+
+
+  .company-contact h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size:
+      clamp(58px, 7vw, 105px);
+
+    font-weight: 600;
+
+    line-height: 0.9;
+
+    letter-spacing:
+      -0.05em;
+  }
+
+
+  .company-lead {
+    margin:
+      0 0 30px;
+
+    color: white;
+
+    font-size:
+      clamp(22px, 2.3vw, 30px);
+
+    line-height: 1.5;
+  }
+
+
+  .company-grid >
+  div:last-child >
+  p:not(.company-lead) {
+    max-width: 500px;
+
+    color:
+      rgba(255,255,255,0.65);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+  }
+
+
+  @media (max-width: 900px) {
+
+    .contact-row {
+      grid-template-columns:
+        50px 1fr;
+    }
+
+
+    .contact-row > div {
+      grid-column: 2;
+    }
+
+
+    .company-grid {
+      grid-template-columns: 1fr;
+    }
+
+  }
+
+
+  @media (max-width: 600px) {
+
+    .contact-hero {
+      padding:
+        80px 0 70px;
+    }
+
+
+    .contact-section {
+      padding-bottom: 90px;
+    }
+
+
+    .contact-row {
+      grid-template-columns: 1fr;
+
+      gap: 18px;
+
+      padding: 45px 0;
+    }
+
+
+    .contact-row > div {
+      grid-column: 1;
+    }
+
+
+    .company-contact {
+      padding: 90px 0;
+    }
+
+  }
+
+</style>

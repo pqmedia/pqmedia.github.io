@@ -1,0 +1,499 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+import { getCollection } from "astro:content";
+
+const projects = await getCollection(
+  "projects",
+  ({ data }) => data.draft !== true
+);
+
+projects.sort(
+  (a, b) =>
+    b.data.pubDate.valueOf() -
+    a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Projects — WELD PQ"
+  description="Welding, fabrication, machining and homemade workshop projects from WELD PQ."
+>
+  <Header />
+
+  <main>
+
+    <section class="projects-hero">
+      <div class="container">
+
+        <p class="label">
+          WELD PQ / PROJECTS
+        </p>
+
+        <h1>
+          BUILT IN<br />
+          THE WORKSHOP.
+        </h1>
+
+        <p class="hero-description">
+          Real tools, fabrication projects and practical
+          workshop ideas — designed, built and tested
+          by WELD PQ.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section class="projects-section">
+
+      <div class="container">
+
+        <div class="projects-bar">
+
+          <span>
+            ALL PROJECTS
+          </span>
+
+          <span>
+            {projects.length} PROJECTS
+          </span>
+
+        </div>
+
+
+        <div class="projects-list">
+
+          {
+            projects.map((project, index) => (
+
+              <article class="project-row">
+
+                <div class="project-number">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+
+
+                <a
+                  href={`/projects/${project.id}/`}
+                  class="project-image"
+                >
+
+                  <img
+                    src={project.data.image}
+                    alt={project.data.imageAlt}
+                  />
+
+                  {
+                    project.data.featured && (
+                      <span class="featured-label">
+                        FEATURED
+                      </span>
+                    )
+                  }
+
+                </a>
+
+
+                <div class="project-content">
+
+                  <p class="project-category">
+                    {project.data.category}
+                  </p>
+
+
+                  <h2>
+                    <a href={`/projects/${project.id}/`}>
+                      {project.data.title}
+                    </a>
+                  </h2>
+
+
+                  <p class="description">
+                    {project.data.description}
+                  </p>
+
+
+                  <div class="project-info">
+
+                    {
+                      project.data.material && (
+                        <div>
+                          <span>MATERIAL</span>
+                          <strong>
+                            {project.data.material}
+                          </strong>
+                        </div>
+                      )
+                    }
+
+
+                    {
+                      project.data.difficulty && (
+                        <div>
+                          <span>DIFFICULTY</span>
+                          <strong>
+                            {project.data.difficulty}
+                          </strong>
+                        </div>
+                      )
+                    }
+
+                  </div>
+
+
+                  <a
+                    href={`/projects/${project.id}/`}
+                    class="project-link"
+                  >
+                    Explore Project
+                    <span>→</span>
+                  </a>
+
+                </div>
+
+              </article>
+
+            ))
+          }
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>
+
+
+<style>
+
+  .projects-hero {
+    padding: 140px 0 110px;
+  }
+
+
+  .projects-hero h1 {
+    max-width: 1100px;
+
+    margin: 0 0 45px;
+
+    font-size:
+      clamp(68px, 8.5vw, 135px);
+
+    font-weight: 600;
+
+    line-height: 0.88;
+
+    letter-spacing: -0.055em;
+  }
+
+
+  .hero-description {
+    max-width: 650px;
+
+    margin: 0;
+
+    font-size: 21px;
+
+    line-height: 1.65;
+  }
+
+
+  .projects-section {
+    padding-bottom: 150px;
+  }
+
+
+  .projects-bar {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 18px 0;
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+  }
+
+
+  .projects-bar span {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  .project-row {
+    display: grid;
+
+    grid-template-columns:
+      55px
+      minmax(300px, 7fr)
+      minmax(330px, 5fr);
+
+    gap: clamp(30px, 5vw, 75px);
+
+    align-items: center;
+
+    padding: 75px 0;
+
+    border-bottom: 1px solid var(--border);
+  }
+
+
+  .project-number {
+    align-self: start;
+
+    padding-top: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+  }
+
+
+  .project-image {
+    position: relative;
+
+    display: block;
+
+    height: 500px;
+
+    overflow: hidden;
+
+    background: var(--graphite);
+  }
+
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.8s ease;
+  }
+
+
+  .project-image:hover img {
+    transform: scale(1.025);
+  }
+
+
+  .featured-label {
+    position: absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    padding: 8px 11px;
+
+    background: var(--accent);
+
+    color: white;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  .project-category {
+    margin: 0 0 25px;
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+  }
+
+
+  .project-content h2 {
+    margin: 0 0 28px;
+
+    font-size:
+      clamp(42px, 4.5vw, 68px);
+
+    font-weight: 600;
+
+    line-height: 0.98;
+
+    letter-spacing: -0.045em;
+  }
+
+
+  .project-content h2 a {
+    transition: color 0.2s ease;
+  }
+
+
+  .project-content h2 a:hover {
+    color: var(--accent);
+  }
+
+
+  .description {
+    max-width: 500px;
+
+    margin: 0 0 35px;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+  }
+
+
+  .project-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    margin-bottom: 35px;
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+  }
+
+
+  .project-info > div {
+    padding: 18px 0;
+  }
+
+
+  .project-info > div + div {
+    padding-left: 20px;
+
+    border-left: 1px solid var(--border);
+  }
+
+
+  .project-info span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+  }
+
+
+  .project-info strong {
+    font-size: 13px;
+
+    font-weight: 600;
+  }
+
+
+  .project-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+  }
+
+
+  .project-link span {
+    transition: transform 0.2s ease;
+  }
+
+
+  .project-link:hover span {
+    transform: translateX(6px);
+  }
+
+
+  @media (max-width: 900px) {
+
+    .projects-hero {
+      padding: 100px 0 80px;
+    }
+
+
+    .project-row {
+      grid-template-columns:
+        45px 1fr;
+    }
+
+
+    .project-image {
+      grid-column: 2;
+
+      height: 520px;
+    }
+
+
+    .project-content {
+      grid-column: 2;
+    }
+
+  }
+
+
+  @media (max-width: 600px) {
+
+    .projects-hero {
+      padding: 80px 0 65px;
+    }
+
+
+    .project-row {
+      grid-template-columns: 1fr;
+
+      gap: 25px;
+
+      padding: 55px 0;
+    }
+
+
+    .project-number,
+    .project-image,
+    .project-content {
+      grid-column: 1;
+    }
+
+
+    .project-image {
+      height: 380px;
+    }
+
+  }
+
+</style>

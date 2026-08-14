@@ -1,0 +1,668 @@
+---
+import { getCollection } from "astro:content";
+
+const projects = await getCollection(
+  "projects",
+  ({ data }) =>
+    data.draft !== true &&
+    data.shopTool === true
+);
+
+projects.sort(
+  (a, b) =>
+    b.data.pubDate.valueOf() -
+    a.data.pubDate.valueOf()
+);
+
+const shopTools = projects.slice(0, 3);
+---
+
+<section class="shop-tools section">
+  <div class="container">
+
+    <div class="section-header">
+
+      <div>
+        <p class="label">
+          02 — DIY Shop Tools
+        </p>
+
+        <h2>
+          TOOLS WORTH<br />
+          BUILDING.
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Practical jigs, fixtures and workshop tools
+        designed, built and tested by WELD PQ.
+      </p>
+
+    </div>
+
+
+    {
+      shopTools.length > 0 ? (
+
+        <div class="tools-list">
+
+          {
+            shopTools.map((tool, index) => (
+
+              <article
+                class:list={[
+                  "tool-row",
+                  index % 2 === 1 && "tool-row-reverse",
+                ]}
+              >
+
+                <div class="tool-number">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+
+
+                <a
+                  href={`/projects/${tool.id}/`}
+                  class="tool-image"
+                >
+
+                  <img
+                    src={tool.data.image}
+                    alt={tool.data.imageAlt}
+                  />
+
+                  <span class="image-label">
+                    SHOP TOOL /
+                    {String(index + 1).padStart(3, "0")}
+                  </span>
+
+                </a>
+
+
+                <div class="tool-content">
+
+                  <p class="tool-category">
+                    {tool.data.category}
+                  </p>
+
+
+                  <h3>
+
+                    <a
+                      href={`/projects/${tool.id}/`}
+                    >
+                      {tool.data.title}
+                    </a>
+
+                  </h3>
+
+
+                  <p>
+                    {tool.data.description}
+                  </p>
+
+
+                  <div class="tool-meta">
+
+                    {
+                      tool.data.material && (
+
+                        <div>
+                          <span>MATERIAL</span>
+                          <strong>
+                            {tool.data.material}
+                          </strong>
+                        </div>
+
+                      )
+                    }
+
+
+                    {
+                      tool.data.difficulty && (
+
+                        <div>
+                          <span>DIFFICULTY</span>
+                          <strong>
+                            {tool.data.difficulty}
+                          </strong>
+                        </div>
+
+                      )
+                    }
+
+                  </div>
+
+
+                  <a
+                    href={`/projects/${tool.id}/`}
+                    class="text-link"
+                  >
+                    Explore Build
+                    <span>→</span>
+                  </a>
+
+                </div>
+
+              </article>
+
+            ))
+          }
+
+        </div>
+
+      ) : (
+
+        <div class="empty-tools">
+          <p>
+            New workshop tools are coming soon.
+          </p>
+        </div>
+
+      )
+    }
+
+
+    <div class="section-footer">
+
+      <a
+        href="/projects/"
+        class="all-tools-link"
+      >
+        <span>
+          Explore All Projects
+        </span>
+
+        <span class="arrow">
+          →
+        </span>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+
+  .shop-tools {
+    background: var(--surface);
+
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  /* ================================
+     HEADER
+  ================================= */
+
+  .section-header {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 2fr)
+      minmax(280px, 1fr);
+
+    gap: 80px;
+
+    align-items: end;
+
+    margin-bottom: 95px;
+  }
+
+
+  .section-header h2 {
+    margin: 0;
+
+    font-size:
+      clamp(54px, 6vw, 92px);
+
+    font-weight: 600;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.045em;
+  }
+
+
+  .section-description {
+    max-width: 430px;
+
+    margin: 0;
+
+    font-size: 18px;
+
+    line-height: 1.75;
+  }
+
+
+  /* ================================
+     LIST
+  ================================= */
+
+  .tools-list {
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  .tool-row {
+    display: grid;
+
+    grid-template-columns:
+      55px
+      minmax(0, 7fr)
+      minmax(320px, 5fr);
+
+    gap:
+      clamp(35px, 5vw, 75px);
+
+    align-items: center;
+
+    padding: 80px 0;
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .tool-number {
+    align-self: start;
+
+    padding-top: 4px;
+
+    color:
+      var(--text-secondary);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.12em;
+  }
+
+
+  /* ================================
+     IMAGE
+  ================================= */
+
+  .tool-image {
+    position: relative;
+
+    display: block;
+
+    height: 500px;
+
+    overflow: hidden;
+
+    background:
+      var(--graphite);
+  }
+
+
+  .tool-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+      transform 0.8s ease;
+  }
+
+
+  .tool-image:hover img {
+    transform:
+      scale(1.025);
+  }
+
+
+  .image-label {
+    position: absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    padding: 8px 10px;
+
+    background:
+      rgba(20,20,19,0.85);
+
+    color: white;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.13em;
+  }
+
+
+  /* ================================
+     CONTENT
+  ================================= */
+
+  .tool-content {
+    max-width: 480px;
+  }
+
+
+  .tool-category {
+    margin: 0 0 26px;
+
+    color:
+      var(--accent);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.14em;
+
+    text-transform:
+      uppercase;
+  }
+
+
+  .tool-content h3 {
+    margin: 0 0 32px;
+
+    font-size:
+      clamp(42px, 4.3vw, 66px);
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    letter-spacing:
+      -0.045em;
+  }
+
+
+  .tool-content h3 a {
+    transition:
+      color 0.2s ease;
+  }
+
+
+  .tool-content h3 a:hover {
+    color:
+      var(--accent);
+  }
+
+
+  .tool-content > p:not(.tool-category) {
+    max-width: 410px;
+
+    margin: 0 0 32px;
+
+    font-size: 17px;
+
+    line-height: 1.75;
+  }
+
+
+  /* ================================
+     META
+  ================================= */
+
+  .tool-meta {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    margin-bottom: 32px;
+
+    border-top:
+      1px solid var(--border);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .tool-meta > div {
+    padding: 18px 0;
+  }
+
+
+  .tool-meta > div + div {
+    padding-left: 20px;
+
+    border-left:
+      1px solid var(--border);
+  }
+
+
+  .tool-meta span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color:
+      var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.12em;
+  }
+
+
+  .tool-meta strong {
+    font-size: 13px;
+
+    font-weight: 600;
+  }
+
+
+  /* ================================
+     ALTERNATING ROW
+  ================================= */
+
+  .tool-row-reverse .tool-image {
+    grid-column: 3;
+  }
+
+
+  .tool-row-reverse .tool-content {
+    grid-column: 2;
+
+    grid-row: 1;
+
+    justify-self: end;
+  }
+
+
+  .tool-row-reverse .tool-number {
+    grid-column: 1;
+
+    grid-row: 1;
+  }
+
+
+  /* ================================
+     EMPTY
+  ================================= */
+
+  .empty-tools {
+    padding: 80px 0;
+
+    border-top:
+      1px solid var(--border);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  /* ================================
+     FOOTER LINK
+  ================================= */
+
+  .section-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 55px;
+  }
+
+
+  .all-tools-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 65px;
+
+    padding-bottom: 12px;
+
+    border-bottom:
+      1px solid var(--text);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.1em;
+
+    text-transform:
+      uppercase;
+  }
+
+
+  .arrow {
+    transition:
+      transform 0.2s ease;
+  }
+
+
+  .all-tools-link:hover .arrow {
+    transform:
+      translateX(6px);
+  }
+
+
+  /* ================================
+     TABLET
+  ================================= */
+
+  @media (max-width: 900px) {
+
+    .section-header {
+      grid-template-columns: 1fr;
+
+      gap: 30px;
+
+      margin-bottom: 60px;
+    }
+
+
+    .tool-row {
+      grid-template-columns:
+        45px 1fr;
+
+      gap: 30px;
+
+      padding: 65px 0;
+    }
+
+
+    .tool-image {
+      grid-column: 2;
+
+      height: 500px;
+    }
+
+
+    .tool-content {
+      grid-column: 2;
+    }
+
+
+    .tool-row-reverse .tool-image,
+    .tool-row-reverse .tool-content {
+      grid-column: 2;
+
+      grid-row: auto;
+
+      justify-self: stretch;
+    }
+
+
+    .tool-row-reverse .tool-number {
+      grid-column: 1;
+
+      grid-row: 1;
+    }
+
+  }
+
+
+  /* ================================
+     MOBILE
+  ================================= */
+
+  @media (max-width: 600px) {
+
+    .tool-row {
+      grid-template-columns: 1fr;
+
+      gap: 25px;
+
+      padding: 55px 0;
+    }
+
+
+    .tool-number,
+    .tool-image,
+    .tool-content,
+    .tool-row-reverse .tool-image,
+    .tool-row-reverse .tool-content,
+    .tool-row-reverse .tool-number {
+      grid-column: 1;
+
+      grid-row: auto;
+    }
+
+
+    .tool-image {
+      height: 380px;
+    }
+
+
+    .tool-meta {
+      grid-template-columns: 1fr;
+    }
+
+
+    .tool-meta > div + div {
+      padding-left: 0;
+
+      border-left: 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .all-tools-link {
+      width: 100%;
+
+      justify-content:
+        space-between;
+    }
+
+  }
+
+</style>

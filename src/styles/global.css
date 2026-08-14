@@ -1,0 +1,150 @@
+:root {
+  --bg: #f5f3ee;
+  --surface: #ffffff;
+
+  --text: #181817;
+  --text-secondary: #696762;
+
+  --border: #d8d5ce;
+
+  --graphite: #20201e;
+
+  --accent: #963b32;
+  --accent-dark: #762d27;
+
+  --max-width: 1360px;
+
+  --font-heading: "Manrope", Arial, sans-serif;
+  --font-body: "Inter", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(calc(100% - 48px), var(--max-width));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 140px 0;
+}
+
+.label {
+  margin: 0 0 24px;
+
+  color: var(--accent);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+
+  font-family: var(--font-heading);
+
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+
+  padding: 16px 22px;
+
+  background: var(--text);
+  color: #ffffff;
+
+  border: 1px solid var(--text);
+  border-radius: 2px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.primary-button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+
+  transform: translateY(-2px);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.text-link span {
+  transition: transform 0.2s ease;
+}
+
+.text-link:hover span {
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: min(calc(100% - 32px), var(--max-width));
+  }
+
+  .section {
+    padding: 88px 0;
+  }
+}

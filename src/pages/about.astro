@@ -1,0 +1,673 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="About — WELD PQ"
+  description="About WELD PQ, a workshop-focused media brand operated by PQ Media in the United States."
+>
+  <Header />
+
+  <main>
+
+    <section class="about-hero">
+      <div class="container">
+
+        <p class="label">
+          WELD PQ / ABOUT
+        </p>
+
+        <h1>
+          PRACTICAL IDEAS.<br />
+          REAL WORKSHOP.<br />
+          BUILT TO SHARE.
+        </h1>
+
+        <div class="hero-bottom">
+
+          <p>
+            WELD PQ is a workshop-focused media brand
+            dedicated to welding, fabrication, machining,
+            homemade tools and practical problem solving.
+          </p>
+
+          <span>
+            OPERATED BY PQ MEDIA / USA
+          </span>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="about-main section">
+      <div class="container about-grid">
+
+        <div>
+          <p class="label">
+            What Is WELD PQ?
+          </p>
+
+          <h2>
+            BUILD.<br />
+            TEST.<br />
+            SHARE.
+          </h2>
+        </div>
+
+
+        <div class="about-copy">
+
+          <p class="lead">
+            We build real projects, test practical ideas
+            and share what we learn with welders, makers,
+            fabricators and metalworkers around the world.
+          </p>
+
+          <p>
+            Our content starts in the workshop. Instead of
+            focusing only on theory, WELD PQ explores tools,
+            techniques and solutions through hands-on projects.
+          </p>
+
+          <p>
+            From welding tips and homemade clamps to fabrication
+            projects and workshop problem solving, our goal is
+            simple: make practical knowledge useful and easy
+            to understand.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="topics-section">
+
+      <div class="container">
+
+        <div class="topics-header">
+
+          <p class="label">
+            What You'll Find Here
+          </p>
+
+          <h2>
+            FROM THE<br />
+            WORKSHOP.
+          </h2>
+
+        </div>
+
+
+        <div class="topics-grid">
+
+          <div>
+            <span>01</span>
+            <h3>WELDING</h3>
+            <p>
+              Practical techniques, tips,
+              fixtures and lessons.
+            </p>
+          </div>
+
+          <div>
+            <span>02</span>
+            <h3>SHOP TOOLS</h3>
+            <p>
+              Homemade clamps, jigs,
+              fixtures and useful tools.
+            </p>
+          </div>
+
+          <div>
+            <span>03</span>
+            <h3>FABRICATION</h3>
+            <p>
+              Cutting, fitting, forming
+              and building with metal.
+            </p>
+          </div>
+
+          <div>
+            <span>04</span>
+            <h3>MACHINING</h3>
+            <p>
+              Practical metalworking
+              methods and workshop ideas.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="mission-section">
+      <div class="container mission-grid">
+
+        <div>
+          <p class="dark-label">
+            OUR MISSION
+          </p>
+
+          <h2>
+            MAKE WORKSHOP<br />
+            KNOWLEDGE<br />
+            USEFUL.
+          </h2>
+        </div>
+
+        <div>
+
+          <p class="mission-lead">
+            Useful knowledge should come from
+            understanding how things actually work.
+          </p>
+
+          <p>
+            We want WELD PQ to become a practical
+            resource for people who enjoy building,
+            repairing and working with metal.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="company-section section">
+      <div class="container company-grid">
+
+        <div>
+          <p class="label">
+            The Company Behind WELD PQ
+          </p>
+
+          <h2>
+            PQ<br />
+            MEDIA.
+          </h2>
+        </div>
+
+
+        <div class="company-copy">
+
+          <p class="lead">
+            WELD PQ is operated by PQ Media
+            in the United States.
+          </p>
+
+          <p>
+            PQ Media develops and operates media projects
+            focused on practical knowledge, making and
+            workshop-based content.
+          </p>
+
+          <a
+            href="/our-story/"
+            class="text-link"
+          >
+            Read Our Story
+            <span>→</span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="about-end">
+      <div class="container">
+
+        <p>
+          EXPLORE WELD PQ
+        </p>
+
+        <h2>
+          SEE WHAT WE'RE<br />
+          BUILDING.
+        </h2>
+
+        <div class="actions">
+
+          <a
+            href="/projects/"
+            class="primary-button"
+          >
+            Explore Projects
+            <span>→</span>
+          </a>
+
+          <a
+            href="/blog/"
+            class="text-link"
+          >
+            Workshop Notes
+            <span>→</span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+
+<style>
+
+  .about-hero {
+    padding: 135px 0 100px;
+  }
+
+
+  .about-hero h1 {
+    max-width: 1200px;
+
+    margin: 0 0 70px;
+
+    font-size:
+      clamp(66px, 8vw, 125px);
+
+    font-weight: 600;
+
+    line-height: 0.87;
+
+    letter-spacing: -0.06em;
+  }
+
+
+  .hero-bottom {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 50px;
+
+    padding-top: 25px;
+
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  .hero-bottom p {
+    max-width: 620px;
+
+    margin: 0;
+
+    font-size: 19px;
+
+    line-height: 1.7;
+  }
+
+
+  .hero-bottom span {
+    color:
+      var(--text-secondary);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  .about-grid,
+  .company-grid,
+  .mission-grid {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 7fr)
+      minmax(350px, 5fr);
+
+    gap:
+      clamp(60px, 8vw, 120px);
+  }
+
+
+  .about-main h2,
+  .company-section h2 {
+    margin: 0;
+
+    font-size:
+      clamp(54px, 6vw, 90px);
+
+    font-weight: 600;
+
+    line-height: 0.94;
+
+    letter-spacing: -0.05em;
+  }
+
+
+  .lead,
+  .mission-lead {
+    margin: 0 0 35px;
+
+    color: var(--text);
+
+    font-size:
+      clamp(22px, 2.2vw, 30px);
+
+    line-height: 1.5;
+  }
+
+
+  .about-copy > p:not(.lead),
+  .company-copy > p:not(.lead) {
+    margin: 0 0 25px;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+  }
+
+
+  .topics-section {
+    padding: 140px 0;
+
+    background: var(--surface);
+
+    border-top:
+      1px solid var(--border);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .topics-header {
+    margin-bottom: 75px;
+  }
+
+
+  .topics-header h2 {
+    margin: 0;
+
+    font-size:
+      clamp(54px, 6vw, 92px);
+
+    font-weight: 600;
+
+    line-height: 0.94;
+  }
+
+
+  .topics-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(4, 1fr);
+
+    border-top:
+      1px solid var(--border);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+
+  .topics-grid > div {
+    min-height: 280px;
+
+    padding: 28px 28px 28px 0;
+  }
+
+
+  .topics-grid > div + div {
+    padding-left: 28px;
+
+    border-left:
+      1px solid var(--border);
+  }
+
+
+  .topics-grid span {
+    color: var(--text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+  }
+
+
+  .topics-grid h3 {
+    margin: 85px 0 18px;
+
+    font-size:
+      clamp(24px, 2.7vw, 37px);
+
+    font-weight: 600;
+  }
+
+
+  .topics-grid p {
+    max-width: 220px;
+
+    margin: 0;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+
+  .mission-section {
+    padding: 140px 0;
+
+    background: var(--graphite);
+
+    color: white;
+  }
+
+
+  .dark-label {
+    margin: 0 0 25px;
+
+    color: #c96a5f;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+  }
+
+
+  .mission-section h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size:
+      clamp(52px, 6vw, 90px);
+
+    font-weight: 600;
+
+    line-height: 0.94;
+  }
+
+
+  .mission-lead {
+    color: white;
+  }
+
+
+  .mission-grid > div:last-child >
+  p:not(.mission-lead) {
+    color:
+      rgba(255,255,255,0.65);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+  }
+
+
+  .company-section {
+    background: var(--surface);
+  }
+
+
+  .company-copy .text-link {
+    margin-top: 15px;
+  }
+
+
+  .about-end {
+    padding: 130px 0;
+
+    border-top:
+      1px solid var(--border);
+  }
+
+
+  .about-end > .container > p {
+    margin: 0 0 30px;
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+  }
+
+
+  .about-end h2 {
+    margin: 0 0 55px;
+
+    font-size:
+      clamp(56px, 7vw, 105px);
+
+    font-weight: 600;
+
+    line-height: 0.9;
+
+    letter-spacing: -0.05em;
+  }
+
+
+  .actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 30px;
+  }
+
+
+  @media (max-width: 900px) {
+
+    .about-grid,
+    .company-grid,
+    .mission-grid {
+      grid-template-columns: 1fr;
+    }
+
+
+    .topics-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+
+    .topics-grid > div:nth-child(3) {
+      padding-left: 0;
+
+      border-left: 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .topics-grid > div:nth-child(4) {
+      border-top:
+        1px solid var(--border);
+    }
+
+  }
+
+
+  @media (max-width: 600px) {
+
+    .about-hero {
+      padding: 80px 0 60px;
+    }
+
+
+    .hero-bottom {
+      flex-direction: column;
+
+      align-items: flex-start;
+    }
+
+
+    .topics-section,
+    .mission-section {
+      padding: 90px 0;
+    }
+
+
+    .topics-grid {
+      grid-template-columns: 1fr;
+    }
+
+
+    .topics-grid > div,
+    .topics-grid > div + div,
+    .topics-grid > div:nth-child(3) {
+      min-height: auto;
+
+      padding: 28px 0;
+
+      border-left: 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .topics-grid >
+    div:first-child {
+      border-top: 0;
+    }
+
+
+    .topics-grid h3 {
+      margin: 45px 0 15px;
+    }
+
+
+    .about-end {
+      padding: 90px 0;
+    }
+
+
+    .actions {
+      flex-direction: column;
+
+      align-items: flex-start;
+    }
+
+  }
+
+</style>
