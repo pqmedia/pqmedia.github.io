@@ -5,6 +5,8 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
   noindex?: boolean;
 }
 
@@ -16,14 +18,13 @@ const {
 
   image = "/images/hero/hero-1.jpg",
 
+  imageAlt = "WELD PQ workshop",
+
+  type = "website",
+
   noindex = false,
 } = Astro.props;
 
-
-/*
-  Canonical URL will automatically become active
-  after we configure `site` in astro.config.mjs.
-*/
 
 const canonicalURL =
   Astro.site
@@ -33,11 +34,6 @@ const canonicalURL =
       ).toString()
     : undefined;
 
-
-/*
-  Convert social sharing image
-  into an absolute URL after deployment.
-*/
 
 const socialImageURL =
   Astro.site
@@ -54,11 +50,6 @@ const socialImageURL =
 
   <head>
 
-   <link
-  rel="sitemap"
-  href="/sitemap-index.xml"
-/>
-
     <meta charset="UTF-8" />
 
     <meta
@@ -72,10 +63,6 @@ const socialImageURL =
     />
 
 
-    <!-- =====================================
-         TITLE / DESCRIPTION
-    ====================================== -->
-
     <title>{title}</title>
 
     <meta
@@ -83,10 +70,6 @@ const socialImageURL =
       content={description}
     />
 
-
-    <!-- =====================================
-         SEARCH ENGINES
-    ====================================== -->
 
     <meta
       name="robots"
@@ -108,14 +91,17 @@ const socialImageURL =
     }
 
 
-    <!-- =====================================
-         OPEN GRAPH
-         Facebook / LinkedIn / Discord etc.
-    ====================================== -->
+    <link
+      rel="sitemap"
+      href="/sitemap-index.xml"
+    />
+
+
+    <!-- OPEN GRAPH -->
 
     <meta
       property="og:type"
-      content="website"
+      content={type}
     />
 
     <meta
@@ -143,6 +129,11 @@ const socialImageURL =
       content={socialImageURL}
     />
 
+    <meta
+      property="og:image:alt"
+      content={imageAlt}
+    />
+
 
     {
       canonicalURL && (
@@ -154,9 +145,7 @@ const socialImageURL =
     }
 
 
-    <!-- =====================================
-         X / TWITTER
-    ====================================== -->
+    <!-- X / TWITTER -->
 
     <meta
       name="twitter:card"
@@ -178,10 +167,13 @@ const socialImageURL =
       content={socialImageURL}
     />
 
+    <meta
+      name="twitter:image:alt"
+      content={imageAlt}
+    />
 
-    <!-- =====================================
-         FAVICON
-    ====================================== -->
+
+    <!-- FAVICON -->
 
     <link
       rel="icon"
@@ -196,19 +188,13 @@ const socialImageURL =
     />
 
 
-    <!-- =====================================
-         BROWSER
-    ====================================== -->
-
     <meta
       name="theme-color"
       content="#f5f3ee"
     />
 
 
-    <!-- =====================================
-         FONTS
-    ====================================== -->
+    <!-- FONTS -->
 
     <link
       rel="preconnect"

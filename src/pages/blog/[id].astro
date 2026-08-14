@@ -32,6 +32,9 @@ const { Content } = await render(post);
 <BaseLayout
   title={`${post.data.title} — WELD PQ`}
   description={post.data.description}
+  image={post.data.image}
+  imageAlt={post.data.imageAlt}
+  type="article"
 >
   <Header />
 
