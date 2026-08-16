@@ -208,10 +208,42 @@
     }
 
 
+    function updateSliderRatio(index) {
+      const slide = slides[index];
+      const image = slide?.querySelector("img");
+
+      if (!(image instanceof HTMLImageElement)) {
+        return;
+      }
+
+      const applyRatio = () => {
+        if (
+          image.naturalWidth > 0 &&
+          image.naturalHeight > 0
+        ) {
+          heroSlider.style.aspectRatio =
+            `${image.naturalWidth} / ${image.naturalHeight}`;
+        }
+      };
+
+      if (image.complete) {
+        applyRatio();
+      } else {
+        image.addEventListener(
+          "load",
+          applyRatio,
+          { once: true }
+        );
+      }
+    }
+
+
     function showSlide(index) {
       if (slides.length === 0) return;
 
       currentIndex = normalizeIndex(index);
+
+      updateSliderRatio(currentIndex);
 
       slides.forEach((slide, slideIndex) => {
         const active = slideIndex === currentIndex;
@@ -468,8 +500,10 @@
 
     width: 100%;
 
-    height: min(72vh, 760px);
-    min-height: 560px;
+    height: auto;
+    min-height: 0;
+
+    aspect-ratio: 4 / 3;
 
     overflow: hidden;
 
@@ -773,7 +807,7 @@
 
 
     .hero-slider {
-      height: 600px;
+      height: auto;
 
       min-height: 0;
     }
@@ -795,7 +829,7 @@
 
 
     .hero-slider {
-      height: 470px;
+      height: auto;
 
       min-height: 0;
     }
