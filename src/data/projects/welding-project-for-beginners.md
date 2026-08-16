@@ -3,8 +3,9 @@ title: "Welding Project for Beginners"
 description: "A project for beginners to learn how to weld components."
 pubDate: "2026-08-15"
 category: "Welding"
-image: "/images/projects/project-image.jpg"
-imageAlt: "Welding project for beginners"
+image: "/images/projects/welding-project-for-beginners-pexels-17180807.jpg"
+imageAlt: "A plasma cutting machine working on a metal sheet."
+images: [{"src":"/images/projects/welding-project-for-beginners-pexels-17180807.jpg","alt":"A plasma cutting machine working on a metal sheet.","role":"cover","provider":"Pexels","photographer":"Ana Victoria  Valverde","sourceUrl":"https://www.pexels.com/photo/plasma-cutting-in-factory-17180807/","providerUrl":"https://www.pexels.com","externalId":"17180807"},{"src":"/images/projects/welding-project-for-beginners-pexels-22717514.avif","alt":"A professional welder demonstrating precision and skill.","role":"inline","provider":"Pexels","photographer":"ERFIN EKARANA","sourceUrl":"https://www.pexels.com/photo/man-welding-metal-in-a-garage-22717514/","providerUrl":"https://www.pexels.com","externalId":"22717514"}]
 processes: ["Welding"]
 featured: false
 shopTool: false
@@ -16,6 +17,11 @@ draft: false
 For those entering the field of metal fabrication, learning how to weld components is a fundamental step in developing technical proficiency. This project serves as an introductory framework for beginners to explore the methodology of welding details. Rather than focusing on a single complex assembly, the emphasis is placed on the systematic approach required to join individual parts into a cohesive structure.
 
 Welding is a process that requires a combination of thermal management, material preparation, and steady hand-eye coordination. For a beginner, the learning process often involves moving from basic bead placement toward a broader understanding of how heat interacts with the geometry and integrity of the components being joined. This guide outlines the general approach to welding components, emphasizing the procedural steps used to move from raw material to a joined assembly.
+
+
+![A professional welder demonstrating precision and skill.](/images/projects/welding-project-for-beginners-pexels-22717514.avif)
+
+*Illustrative stock photo — not a photograph of this specific WELD PQ build.*
 
 ## Known Materials and Processes
 
@@ -88,6 +94,13 @@ Each of these configurations typically requires a different angle of the torch o
 ## Closing Notes
 
 Learning to weld components is a foundational skill that involves patience and repetition. The transition from a beginner to a more proficient fabricator is often marked by an increasing ability to understand how metal reacts to heat and how to manage that reaction through preparation, tacking, and controlled welding passes. By focusing on the systematic process of preparation and the disciplined use of tack welds, a beginner can build a foundation for more complex fabrication tasks.
+
+## Image Credits
+
+The stock photographs below are illustrative workshop images and are not presented as photographs of this specific WELD PQ build.
+
+- Cover image: Photo by [Ana Victoria  Valverde](https://www.pexels.com/photo/plasma-cutting-in-factory-17180807/) on [Pexels](https://www.pexels.com).
+- Inline article image: Photo by [ERFIN EKARANA](https://www.pexels.com/photo/man-welding-metal-in-a-garage-22717514/) on [Pexels](https://www.pexels.com).
 
 ## Questions, Ideas or Contributions?
 
