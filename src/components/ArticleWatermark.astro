@@ -1,0 +1,68 @@
+<div
+  class="weldpq-article-watermark"
+  aria-hidden="true"
+>
+  <img
+    src="/images/brand/weldpq-watermark.webp"
+    alt=""
+    loading="eager"
+    decoding="async"
+  />
+</div>
+
+<style>
+  .weldpq-article-watermark {
+    position: fixed;
+
+    left: 50%;
+    top: 54%;
+
+    z-index: 0;
+
+    width: min(62vw, 760px);
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+    user-select: none;
+
+    opacity: 0.025;
+  }
+
+  .weldpq-article-watermark img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 900px) {
+    .weldpq-article-watermark {
+      width: min(78vw, 650px);
+
+      top: 52%;
+
+      opacity: 0.032;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .weldpq-article-watermark {
+      width: 88vw;
+
+      opacity: 0.028;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .weldpq-article-watermark {
+      display: none;
+    }
+  }
+
+  @media print {
+    .weldpq-article-watermark {
+      display: none;
+    }
+  }
+</style>

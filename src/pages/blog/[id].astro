@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-
+import ArticleWatermark from "../../components/ArticleWatermark.astro";
 import {
   getCollection,
   render,
@@ -27,6 +27,81 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 
 const { Content } = await render(post);
+
+const siteURL =
+  Astro.site
+    ? new URL("/", Astro.site).toString()
+    : "https://pqmedia.github.io/";
+
+const blogURL =
+  new URL("/blog/", siteURL).toString();
+
+const pageURL =
+  new URL(
+    `/blog/${post.id}/`,
+    siteURL
+  ).toString();
+
+const imageURL =
+  new URL(
+    post.data.image,
+    siteURL
+  ).toString();
+
+const blogStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": `${pageURL}#article`,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": pageURL,
+      },
+      headline: post.data.title,
+      description: post.data.description,
+      image: [imageURL],
+      datePublished:
+        post.data.pubDate.toISOString(),
+      articleSection:
+        post.data.category,
+      author: {
+        "@type": "Organization",
+        name: "WELD PQ",
+        url: siteURL,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "WELD PQ",
+        url: siteURL,
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${pageURL}#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteURL,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Workshop Notes",
+          item: blogURL,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: post.data.title,
+          item: pageURL,
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <BaseLayout
@@ -35,9 +110,12 @@ const { Content } = await render(post);
   image={post.data.image}
   imageAlt={post.data.imageAlt}
   type="article"
+  publishedTime={post.data.pubDate.toISOString()}
+  articleSection={post.data.category}
+  structuredData={blogStructuredData}
 >
   <Header />
-
+<ArticleWatermark />
   <main>
     <article>
 
@@ -89,6 +167,7 @@ const { Content } = await render(post);
         <img
           src={post.data.image}
           alt={post.data.imageAlt}
+          decoding="async"
         />
       </div>
 
