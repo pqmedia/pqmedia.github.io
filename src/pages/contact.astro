@@ -2,105 +2,222 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const contactEmail = "weld.pqmediacentral@gmail.com";
 ---
 
 <BaseLayout
   title="Contact — WELD PQ"
-  description="Contact WELD PQ and PQ Media for questions, collaborations and business inquiries."
+  description="Contact WELD PQ for project questions, ideas, collaborations, partnerships, media requests and business inquiries."
 >
   <Header />
 
   <main>
 
+    <!-- ================================
+         HERO
+    ================================= -->
     <section class="contact-hero">
-      <div class="container">
+      <div class="container contact-hero-grid">
 
-        <p class="label">
-          WELD PQ / CONTACT
-        </p>
+        <div>
+          <p class="label">WELD PQ / CONTACT</p>
 
-        <h1>
-          LET'S<br />
-          TALK.
-        </h1>
+          <h1>
+            LET'S<br />
+            TALK.
+          </h1>
+        </div>
 
-        <p class="intro">
-          Questions, collaboration ideas or
-          business inquiries? Get in touch with WELD PQ.
-        </p>
+        <div class="hero-copy">
+          <p class="intro">
+            Have a question, a project idea, a correction,
+            a collaboration proposal or something useful to share?
+            We would like to hear from you.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="primary-contact"
+              href={`mailto:${contactEmail}?subject=WELD%20PQ%20Inquiry`}
+            >
+              Email WELD PQ
+              <span>→</span>
+            </a>
+
+            <a
+              class="text-contact"
+              href="https://www.youtube.com/@WELDPQ"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit YouTube
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
 
       </div>
     </section>
 
 
+    <!-- ================================
+         CONTACT OPTIONS
+    ================================= -->
     <section class="contact-section">
       <div class="container">
+
+        <div class="section-heading">
+          <p class="label">HOW TO REACH US</p>
+
+          <p>
+            One inbox, different reasons to connect.
+            Choose the subject that best matches your message.
+          </p>
+        </div>
+
 
         <div class="contact-list">
 
           <article class="contact-row">
-
-            <span class="number">
-              01
-            </span>
+            <span class="number">01</span>
 
             <h2>
-              GENERAL
+              GENERAL &<br />
+              PROJECT QUESTIONS
             </h2>
 
-            <div>
+            <div class="contact-copy">
               <p>
-                Questions about WELD PQ,
-                our projects or workshop content.
+                Questions about WELD PQ, a published project,
+                a Workshop Note, the website or something you saw
+                in one of our videos.
               </p>
 
-              <span class="coming">
-                CONTACT EMAIL TO BE ADDED
-              </span>
-            </div>
+              <p class="detail">
+                If your question relates to a specific page or video,
+                include the link so we can understand the context quickly.
+              </p>
 
+              <a
+                class="contact-link"
+                href={`mailto:${contactEmail}?subject=WELD%20PQ%20-%20General%20Question`}
+              >
+                ASK A QUESTION →
+              </a>
+            </div>
           </article>
 
 
           <article class="contact-row">
+            <span class="number">02</span>
 
-            <span class="number">
-              02
-            </span>
+            <h2>
+              IDEAS &<br />
+              CONTRIBUTIONS
+            </h2>
+
+            <div class="contact-copy">
+              <p>
+                Have a project idea, workshop tip, useful correction,
+                fabrication topic or experience that could help other makers?
+                Send it our way.
+              </p>
+
+              <p class="detail">
+                A short explanation, reference link or photo you have
+                permission to share can help us understand the idea.
+              </p>
+
+              <a
+                class="contact-link"
+                href={`mailto:${contactEmail}?subject=WELD%20PQ%20-%20Idea%20or%20Contribution`}
+              >
+                SHARE AN IDEA →
+              </a>
+            </div>
+          </article>
+
+
+          <article class="contact-row">
+            <span class="number">03</span>
 
             <h2>
               BUSINESS &<br />
               PARTNERSHIPS
             </h2>
 
-            <div>
+            <div class="contact-copy">
               <p>
-                Brand collaborations, sponsorships,
-                partnerships and commercial inquiries.
+                Brand collaborations, sponsorship opportunities,
+                product-related partnerships, commercial inquiries
+                and other business proposals.
               </p>
 
-              <span class="coming">
-                BUSINESS EMAIL TO BE ADDED
-              </span>
-            </div>
+              <p class="detail">
+                Please include your company or organization,
+                the purpose of the inquiry and any relevant links
+                or campaign information.
+              </p>
 
+              <a
+                class="contact-link"
+                href={`mailto:${contactEmail}?subject=WELD%20PQ%20-%20Business%20and%20Partnerships`}
+              >
+                START A CONVERSATION →
+              </a>
+            </div>
           </article>
 
 
           <article class="contact-row">
-
-            <span class="number">
-              03
-            </span>
+            <span class="number">04</span>
 
             <h2>
-              YOUTUBE
+              MEDIA &<br />
+              PERMISSIONS
             </h2>
 
-            <div>
+            <div class="contact-copy">
               <p>
-                Watch our latest projects,
-                workshop ideas and fabrication content.
+                Contact us about referencing, featuring or requesting
+                permission to use WELD PQ photography, video,
+                project material or published content.
+              </p>
+
+              <p class="detail">
+                Tell us what you would like to use, where it will appear
+                and how it will be presented. Permission is not granted
+                unless confirmed by WELD PQ or PQ Media.
+              </p>
+
+              <a
+                class="contact-link"
+                href={`mailto:${contactEmail}?subject=WELD%20PQ%20-%20Media%20or%20Permission%20Request`}
+              >
+                REQUEST PERMISSION →
+              </a>
+            </div>
+          </article>
+
+
+          <article class="contact-row">
+            <span class="number">05</span>
+
+            <h2>
+              YOUTUBE &<br />
+              COMMUNITY
+            </h2>
+
+            <div class="contact-copy">
+              <p>
+                Follow the builds, workshop ideas and fabrication content
+                on the official WELD PQ YouTube channel.
+              </p>
+
+              <p class="detail">
+                If a video brought you here, you can also use the contact
+                email above when your message needs more room or context.
               </p>
 
               <a
@@ -112,45 +229,111 @@ import Footer from "../components/Footer.astro";
                 @WELDPQ ↗
               </a>
             </div>
-
           </article>
 
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         BEFORE YOU WRITE
+    ================================= -->
+    <section class="message-guide">
+      <div class="container guide-grid">
+
+        <div>
+          <p class="label">BEFORE YOU WRITE</p>
+
+          <h2>
+            HELP US UNDERSTAND<br />
+            YOUR MESSAGE.
+          </h2>
+        </div>
+
+        <div class="guide-list">
+          <div>
+            <span>01</span>
+            <p>
+              Use a clear subject line that says what your message is about.
+            </p>
+          </div>
+
+          <div>
+            <span>02</span>
+            <p>
+              Include the relevant WELD PQ project, article or YouTube link
+              when your question refers to specific content.
+            </p>
+          </div>
+
+          <div>
+            <span>03</span>
+            <p>
+              For business inquiries, include your company,
+              proposal and the most useful reference links.
+            </p>
+          </div>
+
+          <div>
+            <span>04</span>
+            <p>
+              Do not send passwords, API keys or other sensitive credentials.
+            </p>
+          </div>
         </div>
 
       </div>
     </section>
 
 
+    <!-- ================================
+         COMPANY + CTA
+    ================================= -->
     <section class="company-contact">
       <div class="container company-grid">
 
         <div>
-
-          <p class="dark-label">
-            COMPANY
-          </p>
+          <p class="dark-label">WELD PQ / PQ MEDIA</p>
 
           <h2>
-            PQ<br />
-            MEDIA.
+            BUILD.<br />
+            SHARE.<br />
+            CONNECT.
           </h2>
-
         </div>
 
-
-        <div>
-
+        <div class="company-copy">
           <p class="company-lead">
-            WELD PQ is operated by PQ Media
-            in the United States.
+            WELD PQ is operated by PQ Media in the United States.
           </p>
 
           <p>
-            Company and business contact information
-            can be added here once the public contact
-            details for PQ Media are finalized.
+            We publish practical welding, fabrication, workshop
+            and making content built around useful projects,
+            tools, lessons and ideas.
           </p>
 
+          <div class="company-contact-box">
+            <span>CONTACT</span>
+
+            <a href={`mailto:${contactEmail}`}>
+              {contactEmail}
+            </a>
+          </div>
+
+          <p class="company-cta">
+            Have something relevant to WELD PQ?
+            Send a clear note and start the conversation.
+          </p>
+
+          <a
+            class="dark-button"
+            href={`mailto:${contactEmail}?subject=Hello%20WELD%20PQ`}
+          >
+            GET IN TOUCH
+            <span>→</span>
+          </a>
         </div>
 
       </div>
@@ -163,269 +346,339 @@ import Footer from "../components/Footer.astro";
 
 
 <style>
-
   .contact-hero {
-    padding:
-      140px 0 110px;
+    padding: 140px 0 110px;
   }
 
+  .contact-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(340px, 5fr);
+    gap: clamp(60px, 8vw, 130px);
+    align-items: end;
+  }
 
   .contact-hero h1 {
-    margin: 0 0 50px;
-
-    font-size:
-      clamp(82px, 11vw, 170px);
-
+    margin: 0;
+    font-size: clamp(82px, 11vw, 170px);
     font-weight: 600;
-
     line-height: 0.82;
-
-    letter-spacing:
-      -0.065em;
+    letter-spacing: -0.065em;
   }
 
+  .hero-copy {
+    padding-bottom: 10px;
+  }
 
   .intro {
     max-width: 620px;
-
-    margin: 0;
-
+    margin: 0 0 34px;
     font-size: 21px;
-
     line-height: 1.65;
   }
 
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .primary-contact,
+  .dark-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    min-width: 210px;
+    padding: 16px 18px;
+    background: var(--graphite);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .primary-contact:hover {
+    opacity: 0.86;
+  }
+
+  .text-contact {
+    display: inline-flex;
+    gap: 8px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--text);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 
   .contact-section {
     padding-bottom: 140px;
   }
 
-
-  .contact-list {
-    border-top:
-      1px solid var(--border);
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(260px, 5fr) minmax(320px, 7fr);
+    gap: clamp(40px, 7vw, 100px);
+    padding: 0 0 50px;
   }
 
+  .section-heading p:last-child {
+    max-width: 580px;
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .contact-list {
+    border-top: 1px solid var(--border);
+  }
 
   .contact-row {
     display: grid;
-
-    grid-template-columns:
-      70px
-      minmax(300px, 5fr)
-      minmax(320px, 7fr);
-
-    gap:
-      clamp(30px, 5vw, 70px);
-
+    grid-template-columns: 70px minmax(300px, 5fr) minmax(320px, 7fr);
+    gap: clamp(30px, 5vw, 70px);
     padding: 60px 0;
-
-    border-bottom:
-      1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
-
 
   .number {
-    color:
-      var(--text-secondary);
-
+    color: var(--text-secondary);
     font-size: 10px;
-
     font-weight: 700;
-
-    letter-spacing:
-      0.12em;
+    letter-spacing: 0.12em;
   }
-
 
   .contact-row h2 {
     margin: 0;
-
-    font-size:
-      clamp(34px, 4vw, 58px);
-
+    font-size: clamp(34px, 4vw, 58px);
     font-weight: 600;
-
     line-height: 1;
-
-    letter-spacing:
-      -0.04em;
+    letter-spacing: -0.04em;
   }
 
-
   .contact-row p {
-    max-width: 500px;
-
-    margin:
-      0 0 25px;
-
+    max-width: 560px;
+    margin: 0 0 16px;
     font-size: 16px;
-
     line-height: 1.75;
   }
 
-
-  .coming {
-    color:
-      var(--text-secondary);
-
-    font-size: 9px;
-
-    font-weight: 700;
-
-    letter-spacing:
-      0.12em;
+  .contact-row .detail {
+    margin-bottom: 28px;
+    color: var(--text-secondary);
+    font-size: 14px;
   }
-
 
   .contact-link {
     display: inline-flex;
-
     padding-bottom: 8px;
-
-    border-bottom:
-      1px solid var(--text);
-
-    font-size: 12px;
-
+    border-bottom: 1px solid var(--text);
+    font-size: 10px;
     font-weight: 700;
-
-    letter-spacing:
-      0.1em;
+    letter-spacing: 0.1em;
   }
 
+  .contact-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .message-guide {
+    padding: 120px 0;
+    border-top: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.018);
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(340px, 6fr);
+    gap: clamp(60px, 8vw, 120px);
+  }
+
+  .guide-grid h2 {
+    max-width: 700px;
+    margin: 25px 0 0;
+    font-size: clamp(44px, 5vw, 74px);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  .guide-list {
+    border-top: 1px solid var(--border);
+  }
+
+  .guide-list > div {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .guide-list span {
+    color: var(--text-secondary);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .guide-list p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+  }
 
   .company-contact {
     padding: 140px 0;
-
-    background:
-      var(--graphite);
-
+    background: var(--graphite);
     color: white;
   }
-
 
   .company-grid {
     display: grid;
-
-    grid-template-columns:
-      minmax(0, 7fr)
-      minmax(350px, 5fr);
-
-    gap:
-      clamp(60px, 8vw, 120px);
+    grid-template-columns: minmax(0, 7fr) minmax(350px, 5fr);
+    gap: clamp(60px, 8vw, 120px);
   }
-
 
   .dark-label {
     margin: 0 0 25px;
-
     color: #c96a5f;
-
     font-size: 10px;
-
     font-weight: 700;
-
-    letter-spacing:
-      0.14em;
+    letter-spacing: 0.14em;
   }
-
 
   .company-contact h2 {
     margin: 0;
-
     color: white;
-
-    font-size:
-      clamp(58px, 7vw, 105px);
-
+    font-size: clamp(58px, 7vw, 105px);
     font-weight: 600;
-
     line-height: 0.9;
-
-    letter-spacing:
-      -0.05em;
+    letter-spacing: -0.05em;
   }
 
-
   .company-lead {
-    margin:
-      0 0 30px;
-
+    margin: 0 0 28px;
     color: white;
-
-    font-size:
-      clamp(22px, 2.3vw, 30px);
-
+    font-size: clamp(22px, 2.3vw, 30px);
     line-height: 1.5;
   }
 
-
-  .company-grid >
-  div:last-child >
-  p:not(.company-lead) {
-    max-width: 500px;
-
-    color:
-      rgba(255,255,255,0.65);
-
+  .company-copy > p:not(.company-lead):not(.company-cta) {
+    max-width: 520px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.66);
     font-size: 16px;
-
     line-height: 1.8;
   }
 
+  .company-contact-box {
+    margin: 42px 0 30px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  }
+
+  .company-contact-box span {
+    display: block;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .company-contact-box a {
+    color: #fff;
+    font-size: clamp(16px, 1.6vw, 22px);
+    overflow-wrap: anywhere;
+  }
+
+  .company-cta {
+    max-width: 500px;
+    margin: 0 0 26px;
+    color: white;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .dark-button {
+    background: #fff;
+    color: var(--graphite);
+  }
+
+  .dark-button:hover {
+    opacity: 0.88;
+  }
 
   @media (max-width: 900px) {
-
-    .contact-row {
-      grid-template-columns:
-        50px 1fr;
-    }
-
-
-    .contact-row > div {
-      grid-column: 2;
-    }
-
-
+    .contact-hero-grid,
+    .section-heading,
+    .guide-grid,
     .company-grid {
       grid-template-columns: 1fr;
     }
 
-  }
-
-
-  @media (max-width: 600px) {
-
-    .contact-hero {
-      padding:
-        80px 0 70px;
+    .contact-hero-grid {
+      gap: 55px;
     }
 
+    .contact-row {
+      grid-template-columns: 50px 1fr;
+    }
+
+    .contact-row > .contact-copy {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .contact-hero {
+      padding: 80px 0 75px;
+    }
+
+    .intro {
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      align-items: flex-start;
+      flex-direction: column;
+    }
 
     .contact-section {
       padding-bottom: 90px;
     }
 
+    .section-heading {
+      padding-bottom: 36px;
+    }
 
     .contact-row {
       grid-template-columns: 1fr;
-
       gap: 18px;
-
       padding: 45px 0;
     }
 
-
-    .contact-row > div {
+    .contact-row > .contact-copy {
       grid-column: 1;
     }
 
+    .message-guide {
+      padding: 90px 0;
+    }
 
     .company-contact {
       padding: 90px 0;
     }
 
+    .primary-contact,
+    .dark-button {
+      width: 100%;
+    }
   }
-
 </style>
